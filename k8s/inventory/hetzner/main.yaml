@@ -1,0 +1,13 @@
+all:
+  children:
+    control_plane:
+      hosts:
+        master-0:
+          node_private_ipv4: "10.0.0.2"
+          node_public_ipv4: "142.132.176.13"
+          node_public_ipv6: "2a01:4f8:c010:be0c::1"
+
+  vars:
+    base_domain: "mcsr.social"
+    cluster_issuer: "selfsigned"
+    ansible_ssh_common_args: "-F inventory/hetzner/ssh_config"

@@ -1,0 +1,40 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: rke2-cilium
+  namespace: kube-system
+spec:
+  valuesContent: |-
+    k8sServiceHost: {{ rke2_master_ipv4 }}
+    k8sServicePort: 6443
+
+    ipam:
+      mode: "cluster-pool"
+
+    kubeProxyReplacement: strict
+    cni:
+      chainingMode: "none"
+
+    bpf:
+      masquerade: true
+
+    operator:
+      replicas: 1
+
+    hubble:
+      enabled: true
+      relay:
+        enabled: true
+      ui:
+        enabled: true
+        ingress:
+          enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: "{{ cluster_issuer }}"
+          className: nginx
+          hosts:
+            - hubble.{{ base_domain }}
+          tls:
+            - secretName: hubble-tls
+              hosts:
+                - hubble.{{ base_domain }}

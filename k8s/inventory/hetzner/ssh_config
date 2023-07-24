@@ -1,0 +1,9 @@
+Host master-0
+  Hostname mcsr.social
+
+Host *
+  User root
+  StrictHostKeyChecking accept-new
+  ForwardAgent yes
+  ForwardX11 no
+  ServerAliveInterval 60

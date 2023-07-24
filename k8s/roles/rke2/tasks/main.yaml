@@ -1,0 +1,5 @@
+- name: Install RKE2
+  ansible.builtin.include_tasks: install.yaml
+
+- name: Start RKE2
+  ansible.builtin.include_tasks: start.yaml

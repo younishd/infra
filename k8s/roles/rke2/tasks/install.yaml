@@ -1,0 +1,70 @@
+- name: Install system dependencies
+  ansible.builtin.apt:
+    pkg:
+      - python3-pip
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install Python dependencies
+  ansible.builtin.pip:
+    name:
+      - openshift
+
+- name: Ensure RKE2 configuration directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop:
+    - /etc/rancher/rke2
+    - /var/lib/rancher/rke2/server/manifests
+
+- name: Determine IPv4 address of first control plane node
+  ansible.builtin.set_fact:
+    rke2_master_ipv4: '{{ hostvars[groups["control_plane"][0]]["node_private_ipv4"] }}'
+
+- name: Look up RKE2 node token on first control plane node
+  when: inventory_hostname != groups["control_plane"][0]
+  block:
+    - name: Slurp node token from first control plane node
+      ansible.builtin.slurp:
+        src: /var/lib/rancher/rke2/server/node-token
+      delegate_to: "{{ groups['control_plane'][0] }}"
+      register: rke2_master_token_slurp
+    - name: Set variables required for RKE2 configuration
+      ansible.builtin.set_fact:
+        rke2_master_token: "{{ rke2_master_token_slurp.content | b64decode }}"
+
+- name: Populate RKE2 configuration file
+  ansible.builtin.template:
+    src: templates/config.yaml.j2
+    dest: /etc/rancher/rke2/config.yaml
+    owner: root
+    group: root
+    mode: "0600"
+
+- name: Install Cilium Helm chart config
+  when: inventory_hostname in groups["control_plane"]
+  ansible.builtin.template:
+    src: cilium.yaml.j2
+    dest: /var/lib/rancher/rke2/server/manifests/cilium.yaml
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Download RKE2 installer script
+  ansible.builtin.get_url:
+    url: https://get.rke2.io
+    dest: /tmp/rke2.sh
+    mode: "0700"
+
+- name: Run RKE2 installer script
+  changed_when: true
+  ansible.builtin.command:
+    argv:
+      - /tmp/rke2.sh
+  environment:
+    INSTALL_RKE2_TYPE: '{{ "server" if inventory_hostname in groups["control_plane"] else "agent" }}'
+    INSTALL_RKE2_VERSION: "{{ rke2_version }}"

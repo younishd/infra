@@ -1,0 +1,19 @@
+- name: Ensure RKE2 service is started
+  ansible.builtin.systemd:
+    name: '{{ "rke2-server" if inventory_hostname in groups["control_plane"] else "rke2-agent" }}'
+    enabled: true
+    state: started
+
+- name: Wait for Node resource to report Ready state
+  when: 'inventory_hostname in groups["control_plane"]'
+  kubernetes.core.k8s_info:
+    kind: Node
+    name: "{{ inventory_hostname }}"
+    wait: true
+    wait_sleep: 5
+    wait_timeout: 360
+    wait_condition:
+      status: "True"
+      type: Ready
+  environment:
+    K8S_AUTH_KUBECONFIG: /etc/rancher/rke2/rke2.yaml
