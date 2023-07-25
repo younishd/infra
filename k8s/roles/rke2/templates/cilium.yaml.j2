@@ -10,6 +10,8 @@ spec:
 
     ipam:
       mode: "cluster-pool"
+      operator:
+        clusterPoolIPv4PodCIDRList: ["{{ cluster_cidr_ipv4 }}"]
 
     kubeProxyReplacement: strict
     cni:

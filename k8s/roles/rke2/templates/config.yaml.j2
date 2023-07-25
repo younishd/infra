@@ -6,7 +6,9 @@ token: {{ rke2_master_token }}
 cni: cilium
 
 node-ip: {{ node_private_ipv4 }}
-node-external-ip: "{{ node_public_ipv4 }},{{ node_public_ipv6 }}"
+{% if node_public_ipv4 | length %}
+node-external-ip: {{ node_public_ipv4 }}
+{% endif %}
 
 disable: rke2-ingress-nginx
 disable-kube-proxy: true
@@ -15,6 +17,6 @@ kube-controller-manager-arg: "--controllers=*,-nodeipam"
 service-node-port-range: 1-65535
 
 {% if "control_plane" in group_names %}
-cluster-cidr: 10.42.0.0/16
-service-cidr: 10.43.0.0/16
+cluster-cidr: {{ cluster_cidr_ipv4 }}
+service-cidr: {{ service_cidr_ipv4 }}
 {% endif %}

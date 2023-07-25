@@ -4,7 +4,7 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 ```
 
-Install ingress-nginx:
+Install ingress-nginx.
 ```
 helm upgrade --install \
   -f values.yaml \
@@ -13,7 +13,7 @@ helm upgrade --install \
   --create-namespace
 ```
 
-Create basic auth secret:
+Create basic auth secret.
 ```
 htpasswd -c auth neo  # pick a password
 kubectl create secret generic basic-auth --from-file=auth
