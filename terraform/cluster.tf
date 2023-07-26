@@ -77,7 +77,7 @@ resource "hcloud_primary_ip" "control_plane_ipv6" {
 resource "hcloud_primary_ip" "data_plane_ipv4" {
   count = local.count_data_plane
 
-  name          = "worker-${count.index}-ipv6"
+  name          = "worker-${count.index}-ipv4"
   datacenter    = "fsn1-dc14"
   type          = "ipv4"
   assignee_type = "server"
