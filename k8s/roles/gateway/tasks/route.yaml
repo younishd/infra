@@ -1,0 +1,12 @@
+- name: Persist static default route
+  ansible.builtin.template:
+    src: "templates/99-default-gateway.yaml.j2"
+    dest: "/etc/netplan/99-default-gateway.yaml"
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Apply changes to netplan
+  ansible.builtin.command:
+    cmd: "netplan apply"
+  changed_when: true

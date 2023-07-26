@@ -1,0 +1,4 @@
+uplink_iface: eth0
+private_iface: enp7s0
+private_cidr_ipv4: "10.0.0.0/16"
+private_gateway_ipv4: "10.0.0.2"
