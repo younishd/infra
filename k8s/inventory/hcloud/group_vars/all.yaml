@@ -1,0 +1,3 @@
+base_domain: "mcsr.social"
+cluster_issuer: "selfsigned"
+ansible_ssh_common_args: "-F inventory/hcloud/ssh_config"
