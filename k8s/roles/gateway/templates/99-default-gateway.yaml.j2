@@ -1,8 +1,0 @@
-network:
-  version: 2
-  ethernets:
-    {{ private_iface }}:
-      routes:
-      - on-link: true
-        to: 0.0.0.0/0
-        via: {{ private_gateway_ipv4 }}

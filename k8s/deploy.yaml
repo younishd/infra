@@ -1,25 +1,3 @@
-- name: Route IPv4 internet traffic through first control plane node
-  hosts: control_plane[1:]:data_plane
-  become: true
-  gather_facts: true
-  any_errors_fatal: true
-  tasks:
-    - name: Add static route
-      ansible.builtin.import_role:
-        name: gateway
-        tasks_from: route
-
-- name: Configure first control plane node as IPv4 gateway
-  hosts: control_plane[0]
-  become: true
-  gather_facts: true
-  any_errors_fatal: true
-  tasks:
-    - name: Forward and masquerade traffic
-      ansible.builtin.import_role:
-        name: gateway
-        tasks_from: forward
-
 - name: Roll out RKE2 on first control plane node
   hosts: control_plane[0]
   become: true

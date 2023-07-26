@@ -23,6 +23,7 @@ resource "local_file" "inventory" {
     "data_plane" : [for v in hcloud_server.data_plane : {
       name : v.name,
       private_ipv4 : tolist(v.network)[0].ip,
+      public_ipv4 : v.ipv4_address,
       public_ipv6 : v.ipv6_address
     }]
   })
