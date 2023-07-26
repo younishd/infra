@@ -14,6 +14,6 @@ all:
 %{ for v in data_plane ~}
         ${v.name}:
           node_private_ipv4: "${v.private_ipv4}"
-          node_public_ipv4:
+          node_public_ipv4: "${v.public_ipv4}"
           node_public_ipv6: "${v.public_ipv6}"
 %{ endfor ~}
