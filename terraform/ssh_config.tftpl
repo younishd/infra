@@ -4,10 +4,9 @@ Host ${jumphost.name}
 %{ for v in hosts ~}
 Host ${v.name}
   HostName ${v.private_ipv4}
+  ProxyJump ${jumphost.public_ipv4}
 
 %{ endfor ~}
-Host * !${jumphost.name}
-  ProxyJump ${jumphost.public_ipv4}
 
 Host *
   User root
