@@ -1,13 +1,15 @@
 {% if inventory_hostname != groups["control_plane"][0] %}
 server: https://{{ rke2_master_ipv4 }}:9345
 token: {{ rke2_master_token }}
-
 {% endif %}
+
 cni: cilium
 
-node-ip: {{ node_private_ipv4 }}
-{% if node_public_ipv4 | length %}
-node-external-ip: {{ node_public_ipv4 }}
+node-ip: "{{ node_private_ipv4 }},{{ node_public_ipv6 }}"
+{% if "control_plane" in group_names %}
+node-external-ip: "{{ node_public_ipv4 }},{{ node_public_ipv6 }}"
+{% else %}
+node-external-ip: "{{ node_private_ipv4 }},{{ node_public_ipv6 }}"
 {% endif %}
 
 disable: rke2-ingress-nginx
@@ -17,6 +19,6 @@ kube-controller-manager-arg: "--controllers=*,-nodeipam"
 service-node-port-range: 1-65535
 
 {% if "control_plane" in group_names %}
-cluster-cidr: {{ cluster_cidr_ipv4 }}
-service-cidr: {{ service_cidr_ipv4 }}
+cluster-cidr: "{{ cluster_cidr_ipv4 }},{{ cluster_cidr_ipv6 }}"
+service-cidr: "{{ service_cidr_ipv4 }},{{ service_cidr_ipv6 }}"
 {% endif %}

@@ -35,7 +35,7 @@
         tasks_from: start
 
 - name: Start up RKE2 data plane in parallel
-  hosts: k8s_worker
+  hosts: data_plane
   become: true
   gather_facts: true
   any_errors_fatal: true
