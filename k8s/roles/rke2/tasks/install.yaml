@@ -23,7 +23,7 @@
 
 - name: Determine IPv4 address of first control plane node
   ansible.builtin.set_fact:
-    rke2_master_ipv4: '{{ hostvars[groups["control_plane"][0]]["node_private_ipv4"] }}'
+    rke2_master_ipv4: '{{ hostvars[groups["control_plane"][0]]["node_address_ipv4"] }}'
 
 - name: Look up RKE2 node token on first control plane node
   when: inventory_hostname != groups["control_plane"][0]
