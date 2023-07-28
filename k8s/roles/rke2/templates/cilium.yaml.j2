@@ -18,6 +18,15 @@ spec:
     cni:
       chainingMode: "none"
 
+    bpf:
+      masquerade: true
+    enableIPv6Masquerade: false
+
+    ipv4:
+      enabled: true
+    ipv6:
+      enabled: true
+
     operator:
       replicas: 1
 
