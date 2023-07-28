@@ -12,7 +12,6 @@ spec:
       mode: "cluster-pool"
       operator:
         clusterPoolIPv4PodCIDRList: ["{{ cluster_cidr_ipv4 }}"]
-        clusterPoolIPv6PodCIDRList: ["{{ cluster_cidr_ipv6 }}"]
 
     kubeProxyReplacement: strict
     cni:
@@ -20,12 +19,6 @@ spec:
 
     bpf:
       masquerade: true
-    enableIPv6Masquerade: false
-
-    ipv4:
-      enabled: true
-    ipv6:
-      enabled: true
 
     operator:
       replicas: 1
