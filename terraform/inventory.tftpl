@@ -4,12 +4,12 @@ all:
       hosts:
 %{ for v in control_plane ~}
         ${v.name}:
-          node_address_ipv4: "${v.address_ipv4}"
+          node_address_ipv4: "${v.private_ipv4}"
 %{ endfor ~}
 
     data_plane:
       hosts:
 %{ for v in data_plane ~}
         ${v.name}:
-          node_address_ipv4: "${v.address_ipv4}"
+          node_address_ipv4: "${v.private_ipv4}"
 %{ endfor ~}
