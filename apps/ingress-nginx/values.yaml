@@ -4,3 +4,5 @@ controller:
     nodePorts:
       http: 80
       https: 443
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: "true"
