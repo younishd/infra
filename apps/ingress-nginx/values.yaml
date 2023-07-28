@@ -1,10 +1,4 @@
 controller:
   service:
-    ipFamilyPolicy: "PreferDualStack"
-    ipFamilies:
-      - IPv4
-      - IPv6
-    type: "NodePort"
-    nodePorts:
-      http: 80
-      https: 443
+    type: "ClusterIP"
+  hostNetwork: true
