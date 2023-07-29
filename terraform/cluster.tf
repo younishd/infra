@@ -84,5 +84,5 @@ resource "hcloud_network_subnet" "private" {
 
 locals {
   count_control_plane = 1
-  count_data_plane    = 0
+  count_data_plane    = 1
 }
