@@ -1,7 +1,7 @@
 variable "control_plane_server_type" {
   description = "Control plane server type"
   type        = string
-  default     = "cax21"
+  default     = "cax41"
 }
 
 variable "date_plane_server_type" {
