@@ -2,9 +2,9 @@ resource "hcloud_server" "control_plane" {
   count = var.count_control_plane
 
   name        = "master-${count.index}"
-  datacenter  = "fsn1-dc14"
+  datacenter  = var.datacenter
   server_type = var.control_plane_server_type
-  image       = "ubuntu-22.04"
+  image       = var.image
   ssh_keys    = [hcloud_ssh_key.default.id]
 
   public_net {
@@ -28,9 +28,9 @@ resource "hcloud_server" "data_plane" {
   count = var.count_data_plane
 
   name        = "worker-${count.index}"
-  datacenter  = "fsn1-dc14"
+  datacenter  = var.datacenter
   server_type = var.date_plane_server_type
-  image       = "ubuntu-22.04"
+  image       = var.image
   ssh_keys    = [hcloud_ssh_key.default.id]
 
   public_net {
@@ -54,7 +54,7 @@ resource "hcloud_primary_ip" "control_plane_ipv4" {
   count = var.count_control_plane
 
   name          = "master-${count.index}-ipv4"
-  datacenter    = "fsn1-dc14"
+  datacenter    = var.datacenter
   type          = "ipv4"
   assignee_type = "server"
   auto_delete   = true
@@ -64,7 +64,7 @@ resource "hcloud_primary_ip" "data_plane_ipv4" {
   count = var.count_data_plane
 
   name          = "worker-${count.index}-ipv4"
-  datacenter    = "fsn1-dc14"
+  datacenter    = var.datacenter
   type          = "ipv4"
   assignee_type = "server"
   auto_delete   = true
