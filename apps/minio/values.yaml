@@ -1,0 +1,12 @@
+nodeSelector:
+  node-role.kubernetes.io/minio: "true"
+ingress:
+  enabled: true
+  hostname: minio.mcsr.social
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned
+  tls: true
+  ingressClassName: nginx
+persistence:
+  storageClass: local
+  size: 10Gi
