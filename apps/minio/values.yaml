@@ -1,5 +1,5 @@
 nodeSelector:
-  node-role.kubernetes.io/minio: "true"
+  node-role.kubernetes.io/storage: "true"
 ingress:
   enabled: true
   hostname: minio.mcsr.social
@@ -8,5 +8,4 @@ ingress:
   tls: true
   ingressClassName: nginx
 persistence:
-  storageClass: local
-  size: 10Gi
+  existingClaim: "minio-pvc"
