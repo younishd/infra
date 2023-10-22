@@ -1,13 +1,13 @@
 variable "control_plane_server_type" {
-  description = "Control plane server type"
+  description = "Control plane server flavor"
   type        = string
-  default     = "cx31"
+  default     = "cax31"
 }
 
 variable "date_plane_server_type" {
-  description = "Data plane server type"
+  description = "Data plane server flavor"
   type        = string
-  default     = "cpx21"
+  default     = "cax31"
 }
 
 variable "count_control_plane" {
@@ -25,7 +25,7 @@ variable "count_data_plane" {
 variable "datacenter" {
   description = "Datacenter identifier"
   type        = string
-  default     = "hel1-dc2"
+  default     = "fsn1-dc14"
 }
 
 variable "image" {
@@ -36,6 +36,12 @@ variable "image" {
 
 variable "hcloud_token" {
   description = "Hetzner Cloud API token"
+  type        = string
+  sensitive   = true
+}
+
+variable "gandi_token" {
+  description = "Gandi personal access token"
   type        = string
   sensitive   = true
 }

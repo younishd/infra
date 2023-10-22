@@ -1,13 +1,12 @@
 Host ${jumphost.name}
-  HostName ${jumphost.public_ipv4}
+  HostName ${jumphost.public}
 
 %{ for v in hosts ~}
 Host ${v.name}
-  HostName ${v.private_ipv4}
-  ProxyJump ${jumphost.public_ipv4}
+  HostName ${v.private}
+  ProxyJump ${jumphost.public}
 
 %{ endfor ~}
-
 Host *
   User root
   StrictHostKeyChecking no

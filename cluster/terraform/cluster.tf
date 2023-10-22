@@ -9,7 +9,7 @@ resource "hcloud_server" "control_plane" {
 
   public_net {
     ipv4_enabled = true
-    ipv4         = hcloud_primary_ip.control_plane_ipv4[count.index].id
+    ipv4         = hcloud_primary_ip.public[count.index].id
     ipv6_enabled = false
   }
 
@@ -20,7 +20,7 @@ resource "hcloud_server" "control_plane" {
 
   depends_on = [
     hcloud_network.private,
-    hcloud_primary_ip.control_plane_ipv4
+    hcloud_primary_ip.public
   ]
 }
 
@@ -35,7 +35,7 @@ resource "hcloud_server" "data_plane" {
 
   public_net {
     ipv4_enabled = true
-    ipv4         = hcloud_primary_ip.data_plane_ipv4[count.index].id
+    ipv4         = hcloud_primary_ip.public[count.index + var.count_control_plane].id
     ipv6_enabled = false
   }
 
@@ -45,25 +45,14 @@ resource "hcloud_server" "data_plane" {
   }
 
   depends_on = [
-    hcloud_network.private,
-    hcloud_primary_ip.data_plane_ipv4
+    hcloud_network.private
   ]
 }
 
-resource "hcloud_primary_ip" "control_plane_ipv4" {
-  count = var.count_control_plane
+resource "hcloud_primary_ip" "public" {
+  count = var.count_control_plane + var.count_data_plane
 
-  name          = "master-${count.index}-ipv4"
-  datacenter    = var.datacenter
-  type          = "ipv4"
-  assignee_type = "server"
-  auto_delete   = true
-}
-
-resource "hcloud_primary_ip" "data_plane_ipv4" {
-  count = var.count_data_plane
-
-  name          = "worker-${count.index}-ipv4"
+  name          = "public-${count.index}-ipv4"
   datacenter    = var.datacenter
   type          = "ipv4"
   assignee_type = "server"
@@ -71,7 +60,7 @@ resource "hcloud_primary_ip" "data_plane_ipv4" {
 }
 
 resource "hcloud_network" "private" {
-  name     = "network-0"
+  name     = "private"
   ip_range = "10.0.0.0/16"
 }
 
@@ -79,5 +68,5 @@ resource "hcloud_network_subnet" "private" {
   type         = "cloud"
   network_id   = hcloud_network.private.id
   network_zone = "eu-central"
-  ip_range     = "10.0.0.0/16"
+  ip_range     = hcloud_network.private.ip_range
 }
