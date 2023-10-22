@@ -22,23 +22,3 @@ spec:
 
     operator:
       replicas: 1
-
-    hubble:
-      enabled: true
-      relay:
-        enabled: true
-      ui:
-        enabled: true
-        ingress:
-          enabled: true
-          annotations:
-            cert-manager.io/cluster-issuer: "{{ cluster_issuer }}"
-            nginx.ingress.kubernetes.io/auth-type: basic
-            nginx.ingress.kubernetes.io/auth-secret: default/basic-auth
-          className: nginx
-          hosts:
-            - hubble.{{ base_domain }}
-          tls:
-            - secretName: hubble-tls
-              hosts:
-                - hubble.{{ base_domain }}
