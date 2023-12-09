@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ingress-nginx
-  namespace: argocd
+  namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -21,8 +21,7 @@ spec:
               http: 80
               https: 443
           nodeSelector:
-            node-role.kubernetes.io/control-plane: "true"
-
+            node-role.kubernetes.io/ingress: "true"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: ingress-nginx
