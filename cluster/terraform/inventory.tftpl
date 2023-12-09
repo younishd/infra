@@ -13,3 +13,7 @@ all:
         ${v.name}:
           node_address_ipv4: "${v.private_ipv4}"
 %{ endfor ~}
+
+    ingress:
+      hosts:
+        ${control_plane[0].name}:

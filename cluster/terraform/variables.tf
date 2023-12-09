@@ -1,3 +1,9 @@
+variable "prefix" {
+  description = "Resource name prefix"
+  type        = string
+  default     = "hzn-"
+}
+
 variable "control_plane_server_type" {
   description = "Control plane server flavor"
   type        = string
@@ -20,6 +26,12 @@ variable "count_data_plane" {
   description = "Number of data plane servers"
   type        = number
   default     = 1
+}
+
+variable "subnet_cidr" {
+  description = "Subnet IPv4 CIDR"
+  type        = string
+  default     = "10.40.0.0/16"
 }
 
 variable "datacenter" {

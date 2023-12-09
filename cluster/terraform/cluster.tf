@@ -1,7 +1,7 @@
 resource "hcloud_server" "control_plane" {
   count = var.count_control_plane
 
-  name        = "master-${count.index}"
+  name        = "${var.prefix}master-${count.index}"
   datacenter  = var.datacenter
   server_type = var.control_plane_server_type
   image       = var.image
@@ -15,7 +15,7 @@ resource "hcloud_server" "control_plane" {
 
   network {
     network_id = hcloud_network.private.id
-    ip         = cidrhost("10.0.0.0/16", count.index + 2)
+    ip         = cidrhost(var.subnet_cidr, count.index + 2)
   }
 
   depends_on = [
@@ -27,7 +27,7 @@ resource "hcloud_server" "control_plane" {
 resource "hcloud_server" "data_plane" {
   count = var.count_data_plane
 
-  name        = "worker-${count.index}"
+  name        = "${var.prefix}worker-${count.index}"
   datacenter  = var.datacenter
   server_type = var.date_plane_server_type
   image       = var.image
@@ -41,7 +41,7 @@ resource "hcloud_server" "data_plane" {
 
   network {
     network_id = hcloud_network.private.id
-    ip         = cidrhost("10.0.0.0/16", count.index + var.count_control_plane + 2)
+    ip         = cidrhost(var.subnet_cidr, count.index + var.count_control_plane + 2)
   }
 
   depends_on = [
@@ -52,7 +52,7 @@ resource "hcloud_server" "data_plane" {
 resource "hcloud_primary_ip" "public" {
   count = var.count_control_plane + var.count_data_plane
 
-  name          = "public-${count.index}-ipv4"
+  name          = "${var.prefix}public-${count.index}-ipv4"
   datacenter    = var.datacenter
   type          = "ipv4"
   assignee_type = "server"
@@ -60,8 +60,8 @@ resource "hcloud_primary_ip" "public" {
 }
 
 resource "hcloud_network" "private" {
-  name     = "private"
-  ip_range = "10.0.0.0/16"
+  name     = "${var.prefix}private-ipv4"
+  ip_range = var.subnet_cidr
 }
 
 resource "hcloud_network_subnet" "private" {

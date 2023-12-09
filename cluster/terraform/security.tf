@@ -1,5 +1,5 @@
 resource "hcloud_firewall" "allow_in" {
-  name = "allow-in"
+  name = "${var.prefix}allow-in"
   rule {
     direction = "in"
     protocol  = "icmp"
@@ -37,7 +37,7 @@ resource "hcloud_firewall" "allow_in" {
 }
 
 resource "hcloud_firewall" "deny_all" {
-  name = "deny-all"
+  name = "${var.prefix}deny-all"
 }
 
 resource "hcloud_firewall_attachment" "allow_in" {
