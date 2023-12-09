@@ -1,3 +1,0 @@
-base_domain: "zenshift.io"
-cluster_issuer: "selfsigned"
-ansible_ssh_common_args: "-F ssh/hcloud.config"

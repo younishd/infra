@@ -54,6 +54,15 @@
     group: root
     mode: "0644"
 
+- name: Install Argo CD Helm chart
+  when: inventory_hostname in groups["control_plane"]
+  ansible.builtin.template:
+    src: argocd.yaml.j2
+    dest: /var/lib/rancher/rke2/server/manifests/argocd.yaml
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Download RKE2 installer script
   ansible.builtin.get_url:
     url: https://get.rke2.io

@@ -7,18 +7,14 @@ spec:
   valuesContent: |-
     k8sServiceHost: {{ rke2_master_ipv4 }}
     k8sServicePort: 6443
-
     ipam:
       mode: "cluster-pool"
       operator:
         clusterPoolIPv4PodCIDRList: ["{{ cluster_cidr_ipv4 }}"]
-
     kubeProxyReplacement: strict
     cni:
       chainingMode: "none"
-
     bpf:
       masquerade: true
-
     operator:
       replicas: 1

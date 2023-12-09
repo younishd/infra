@@ -5,7 +5,7 @@
     state: started
 
 - name: Wait for Node resource to report Ready state
-  when: 'inventory_hostname in groups["control_plane"]'
+  delegate_to: "{{ groups['control_plane'][0] }}"
   kubernetes.core.k8s_info:
     kind: Node
     name: "{{ inventory_hostname }}"
@@ -17,3 +17,17 @@
       type: Ready
   environment:
     K8S_AUTH_KUBECONFIG: /etc/rancher/rke2/rke2.yaml
+
+- name: Apply labels to Nodes
+  delegate_to: "{{ groups['control_plane'][0] }}"
+  when: "item.key in group_names and item.value | length > 0"
+  kubernetes.core.k8s:
+    state: patched
+    kind: Node
+    name: "{{ inventory_hostname }}"
+    definition:
+      metadata:
+        labels: "{{ item.value }}"
+  environment:
+    K8S_AUTH_KUBECONFIG: /etc/rancher/rke2/rke2.yaml
+  loop: "{{ node_labels | dict2items }}"

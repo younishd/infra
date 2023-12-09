@@ -3,3 +3,5 @@ argocd_version: "5.51.6"
 
 cluster_cidr_ipv4: "10.42.0.0/16"
 service_cidr_ipv4: "10.43.0.0/16"
+
+node_labels: {}
