@@ -13,6 +13,10 @@ spec:
   chart: argo-cd
   version: {{ argocd_version }}
   targetNamespace: argo-cd
+  valuesContent: |-
+    global:
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: "true"
 ---
 apiVersion: v1
 kind: Secret
