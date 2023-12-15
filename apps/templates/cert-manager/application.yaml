@@ -14,9 +14,9 @@ spec:
     helm:
       releaseName: cert-manager
       valuesObject:
-          installCRDs: true
-          nodeSelector:
-            node-role.kubernetes.io/control-plane: "true"
+        installCRDs: true
+        nodeSelector:
+          node-role.kubernetes.io/control-plane: "true"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: cert-manager
