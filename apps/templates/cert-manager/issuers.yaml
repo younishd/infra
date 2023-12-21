@@ -18,7 +18,6 @@ spec:
     email: {{ .Values.spec.certManager.letsEncrypt.email }}
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      # Secret resource that will be used to store the account's private key.
       name: letsencrypt-staging-key
     solvers:
     - http01:
