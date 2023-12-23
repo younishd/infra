@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-cd
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: argo-cd
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: "5.*"
+    helm:
+      releaseName: argo-cd
+      valuesObject:
+        global:
+          nodeSelector:
+            node-role.kubernetes.io/control-plane: "true"
+        configs:
+          params:
+            server:
+              insecure: true
+          secret:
+            createSecret: false
+          ingress:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
+            ingressClassName: nginx
+            hosts:
+              - "argo.{{ .Values.spec.baseDomain }}"
+
+  destination:
+    server: {{ .Values.spec.destination.server }}
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: false
+      allowEmpty: false
+      selfHeal: true

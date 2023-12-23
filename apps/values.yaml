@@ -1,6 +1,8 @@
 spec:
   destination:
     server: https://kubernetes.default.svc
+  baseDomain: "example.com"
+  clusterIssuer: "letsencrypt-staging"
   certManager:
     letsEncrypt:
       email: younis.bensalah@gmail.com

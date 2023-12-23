@@ -14,9 +14,9 @@ spec:
   version: {{ argocd_version }}
   targetNamespace: argo-cd
   valuesContent: |-
-    global:
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: "true"
+    configs:
+      secret:
+        createSecret: false
 ---
 apiVersion: v1
 kind: Secret
@@ -30,6 +30,15 @@ stringData:
   url: https://github.com/younishd/infra
   username: younishd
   password: "{{ github_token }}"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-secret
+  namespace: argo-cd
+stringData:
+  admin.password: "{{ argocd_password }}"
+  admin.passwordMtime: "2023-12-23T14:30:00CET"
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -47,6 +56,11 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
+  helm:
+    releaseName: apps
+    valuesObject:
+      spec:
+        baseDomain: {{ base_domain }}
   syncPolicy:
     automated:
       prune: false
