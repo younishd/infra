@@ -33,7 +33,7 @@ spec:
 
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: kube-system
+    namespace: argo-cd
   syncPolicy:
     automated:
       prune: false
