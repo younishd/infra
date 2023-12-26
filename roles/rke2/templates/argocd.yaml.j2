@@ -59,8 +59,7 @@ spec:
   helm:
     releaseName: apps
     valuesObject:
-      spec:
-        baseDomain: {{ base_domain }}
+      baseDomain: {{ base_domain }}
   syncPolicy:
     automated:
       prune: false
