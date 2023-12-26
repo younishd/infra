@@ -16,6 +16,7 @@ spec:
       valuesObject:
         nodeSelector:
           node-role.kubernetes.io/control-plane: "true"
+        keyrenewperiod: 0
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: kube-system

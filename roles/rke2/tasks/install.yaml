@@ -54,11 +54,20 @@
     group: root
     mode: "0644"
 
-- name: Install Argo CD Helm chart
+- name: Install Argo CD Helm chart etc.
   when: inventory_hostname in groups["control_plane"]
   ansible.builtin.template:
     src: argocd.yaml.j2
     dest: /var/lib/rancher/rke2/server/manifests/argocd.yaml
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Install Sealed Secrets key
+  when: inventory_hostname in groups["control_plane"]
+  ansible.builtin.template:
+    src: sealed-secrets.yaml.j2
+    dest: /var/lib/rancher/rke2/server/manifests/sealed-secrets.yaml
     owner: root
     group: root
     mode: "0644"
