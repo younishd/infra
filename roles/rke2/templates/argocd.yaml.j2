@@ -56,7 +56,8 @@ spec:
     helm:
       releaseName: apps
       valuesObject:
-        baseDomain: {{ base_domain }}
+        spec:
+          baseDomain: {{ base_domain }}
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
