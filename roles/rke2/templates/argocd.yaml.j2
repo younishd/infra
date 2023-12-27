@@ -53,13 +53,13 @@ spec:
     repoURL: https://github.com/younishd/infra
     targetRevision: master
     path: apps
+    helm:
+      releaseName: apps
+      valuesObject:
+        baseDomain: {{ base_domain }}
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
-  helm:
-    releaseName: apps
-    valuesObject:
-      baseDomain: {{ base_domain }}
   syncPolicy:
     automated:
       prune: false
