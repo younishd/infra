@@ -23,6 +23,7 @@ spec:
               insecure: true
           secret:
             createSecret: false
+        server:
           ingress:
             enabled: true
             annotations:
