@@ -1,10 +1,10 @@
 Host ${jumphost.name}
-  HostName ${jumphost.public}
+  HostName ${jumphost.public_ipv4}
 
 %{ for v in hosts ~}
 Host ${v.name}
-  HostName ${v.private}
-  ProxyJump ${jumphost.public}
+  HostName ${v.private_ipv4}
+  ProxyJump ${jumphost.public_ipv4}
 
 %{ endfor ~}
 Host *

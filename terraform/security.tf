@@ -34,30 +34,20 @@ resource "hcloud_firewall" "allow_in" {
       "0.0.0.0/0"
     ]
   }
-}
 
-resource "hcloud_firewall" "deny_all" {
-  name = "${var.prefix}deny-all"
+  rule {
+    direction = "in"
+    protocol  = "udp"
+    port      = "41641"
+    source_ips = [
+      "0.0.0.0/0"
+    ]
+  }
 }
 
 resource "hcloud_firewall_attachment" "allow_in" {
   firewall_id = hcloud_firewall.allow_in.id
-  server_ids = [
-    hcloud_server.control_plane[0].id
-  ]
-  depends_on = [
-    hcloud_server.control_plane[0]
-  ]
-}
-
-resource "hcloud_firewall_attachment" "deny_all" {
-  firewall_id = hcloud_firewall.deny_all.id
-  server_ids = [
-    for v in concat(slice(hcloud_server.control_plane, 1, length(hcloud_server.control_plane)), hcloud_server.data_plane) : v.id
-  ]
-  depends_on = [
-    hcloud_server.control_plane, hcloud_server.data_plane
-  ]
+  server_ids  = concat(hcloud_server.control_plane[*].id, hcloud_server.data_plane[*].id)
 }
 
 resource "hcloud_ssh_key" "default" {
