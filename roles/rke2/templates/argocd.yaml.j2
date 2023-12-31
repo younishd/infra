@@ -11,7 +11,7 @@ metadata:
 spec:
   repo: https://argoproj.github.io/argo-helm
   chart: argo-cd
-  version: {{ argocd_version }}
+  version: "{{ argocd_version }}"
   targetNamespace: argo-cd
   valuesContent: |-
     configs:
@@ -43,7 +43,7 @@ stringData:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps
+  name: root
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -52,12 +52,12 @@ spec:
   source:
     repoURL: https://github.com/younishd/infra
     targetRevision: master
-    path: apps
+    path: apps/root
     helm:
-      releaseName: apps
+      releaseName: root
       valuesObject:
         spec:
-          baseDomain: {{ base_domain }}
+          baseDomain: "{{ base_domain }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd

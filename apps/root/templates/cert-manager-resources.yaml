@@ -1,27 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sealed-secrets
+  name: cert-manager-resources
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    chart: sealed-secrets
-    repoURL: https://bitnami-labs.github.io/sealed-secrets
-    targetRevision: "2.13.*"
+    repoURL: https://github.com/younishd/infra
+    targetRevision: master
+    path: apps/cert-manager-resources
     helm:
-      releaseName: sealed-secrets
+      releaseName: cert-manager-resources
       valuesObject:
-        nodeSelector:
-          node-role.kubernetes.io/control-plane: "true"
-        keyrenewperiod: 0
+        spec:
+          email: {{ .Values.spec.certManager.email }}
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: kube-system
+    namespace: argo-cd
   syncPolicy:
     automated:
       prune: false
       allowEmpty: false
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
