@@ -1,0 +1,10 @@
+all:
+  children:
+    control_plane:
+      hosts:
+        ovh-master-0:
+          # TODO: get ip from tailscale iface
+          node_ipv4: "100.66.65.47"
+    data_plane:
+      hosts:
+        ovh-master-0:
