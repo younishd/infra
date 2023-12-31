@@ -4,8 +4,8 @@ token: {{ rke2_master_token }}
 {% endif %}
 
 cni: cilium
-node-ip: "{{ node_address_ipv4 }}"
-node-external-ip: "{{ node_address_ipv4 }}"
+node-ip: "{{ node_ipv4 }}"
+node-external-ip: "{{ node_ipv4 }}"
 service-node-port-range: 1-65535
 disable: rke2-ingress-nginx
 disable-kube-proxy: true
