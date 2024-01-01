@@ -22,7 +22,7 @@ spec:
                 - /data
   destination:
     name: ovh
-    namespace: argo-cd
+    namespace: local-path-storage
   syncPolicy:
     automated:
       prune: false
