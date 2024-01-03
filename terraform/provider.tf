@@ -8,6 +8,14 @@ terraform {
       version = "~> 2.0"
       source  = "go-gandi/gandi"
     }
+    tailscale = {
+      source  = "tailscale/tailscale"
+      version = "~> 0.13"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
   }
 }
 
@@ -17,4 +25,12 @@ provider "hcloud" {
 
 provider "gandi" {
   key = var.gandi_token
+}
+
+provider "tailscale" {
+  oauth_client_id     = var.tailscale_oauth_client_id
+  oauth_client_secret = var.tailscale_oauth_client_secret
+}
+
+provider "random" {
 }

@@ -1,11 +1,20 @@
+resource "random_shuffle" "hostnames" {
+  input        = var.random_hostnames
+  result_count = var.count_control_plane + var.count_data_plane
+}
+
 resource "hcloud_server" "control_plane" {
   count = var.count_control_plane
 
-  name        = "${var.prefix}master-${count.index}"
+  name        = random_shuffle.hostnames.result[count.index]
   datacenter  = var.datacenter
   server_type = var.control_plane_server_type
   image       = var.image
   ssh_keys    = [hcloud_ssh_key.default.id]
+
+  user_data = templatefile("cloud-init.tftpl", {
+    auth_key : tailscale_tailnet_key.cluster.key
+  })
 
   public_net {
     ipv4_enabled = true
@@ -27,11 +36,15 @@ resource "hcloud_server" "control_plane" {
 resource "hcloud_server" "data_plane" {
   count = var.count_data_plane
 
-  name        = "${var.prefix}worker-${count.index}"
+  name        = random_shuffle.hostnames.result[count.index + var.count_control_plane]
   datacenter  = var.datacenter
   server_type = var.date_plane_server_type
   image       = var.image
   ssh_keys    = [hcloud_ssh_key.default.id]
+
+  user_data = templatefile("cloud-init.tftpl", {
+    auth_key : tailscale_tailnet_key.cluster.key
+  })
 
   public_net {
     ipv4_enabled = true
@@ -52,7 +65,7 @@ resource "hcloud_server" "data_plane" {
 resource "hcloud_primary_ip" "public" {
   count = var.count_control_plane + var.count_data_plane
 
-  name          = "${var.prefix}public-${count.index}-ipv4"
+  name          = "${random_shuffle.hostnames.result[count.index]}-public-ipv4"
   datacenter    = var.datacenter
   type          = "ipv4"
   assignee_type = "server"
@@ -60,7 +73,7 @@ resource "hcloud_primary_ip" "public" {
 }
 
 resource "hcloud_network" "private" {
-  name     = "${var.prefix}private-ipv4"
+  name     = "private"
   ip_range = var.subnet_cidr
 }
 

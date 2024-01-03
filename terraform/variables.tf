@@ -1,9 +1,3 @@
-variable "prefix" {
-  description = "Resource name prefix"
-  type        = string
-  default     = "hzn-"
-}
-
 variable "control_plane_server_type" {
   description = "Control plane server flavor"
   type        = string
@@ -31,7 +25,7 @@ variable "count_data_plane" {
 variable "subnet_cidr" {
   description = "Subnet IPv4 CIDR"
   type        = string
-  default     = "10.40.0.0/16"
+  default     = "10.0.0.0/16"
 }
 
 variable "datacenter" {
@@ -46,6 +40,12 @@ variable "image" {
   default     = "ubuntu-22.04"
 }
 
+variable "ssh_key" {
+  description = "Path to SSH public key"
+  type        = string
+  default     = "~/.ssh/id_ed25519.pub"
+}
+
 variable "hcloud_token" {
   description = "Hetzner Cloud API token"
   type        = string
@@ -56,4 +56,33 @@ variable "gandi_token" {
   description = "Gandi personal access token"
   type        = string
   sensitive   = true
+}
+
+variable "tailscale_oauth_client_id" {
+  description = "Tailscale OAuth client ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "tailscale_oauth_client_secret" {
+  description = "Tailscale OAuth client secret"
+  type        = string
+  sensitive   = true
+}
+
+variable "random_hostnames" {
+  description = "List of random hostnames to pick from"
+  type        = list(string)
+  default = [
+    "bamboo-jungle",
+    "birch-forest",
+    "eroded-badlands",
+    "frozen-river",
+    "lukewarm-ocean",
+    "mangrove-swamp",
+    "savanna-plateau",
+    "snowy-beach",
+    "sunflower-plains",
+    "windswept-hills"
+  ]
 }

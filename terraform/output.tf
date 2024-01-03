@@ -1,13 +1,9 @@
 resource "local_file" "ssh_config" {
   content = templatefile("ssh_config.tftpl", {
-    "jumphost" : {
-      name : hcloud_server.control_plane[0].name,
-      public_ipv4 : hcloud_primary_ip.public[0].ip_address
-    },
     "hosts" : [
-      for v in concat(slice(hcloud_server.control_plane, 1, length(hcloud_server.control_plane)), hcloud_server.data_plane) : {
+      for i, v in concat(hcloud_server.control_plane, hcloud_server.data_plane) : {
         name : v.name,
-        private_ipv4 : tolist(v.network)[0].ip
+        public_ipv4 : hcloud_primary_ip.public[i].ip_address
       }
     ]
   })
@@ -23,5 +19,5 @@ resource "local_file" "inventory" {
 }
 
 output "public" {
-  value = hcloud_primary_ip.public[0].ip_address
+  value = hcloud_primary_ip.public[*].ip_address
 }

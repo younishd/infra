@@ -11,7 +11,3 @@ all:
 %{ for v in data_plane ~}
         ${v}:
 %{ endfor ~}
-
-    ingress:
-      hosts:
-        ${control_plane[0]}:
