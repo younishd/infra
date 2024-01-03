@@ -1,6 +1,6 @@
 ansible_ssh_common_args: "-F ssh/ovh.config"
 
-argocd_enabled: false
+base_domain: "dev.zenshift.io"
 
 node_labels:
   control_plane:
@@ -8,5 +8,10 @@ node_labels:
   data_plane:
     node-role.kubernetes.io/data-plane: "true"
 
-cluster_cidr_ipv4: "10.62.0.0/16"
-service_cidr_ipv4: "10.63.0.0/16"
+cluster_cidr_ipv4: "10.20.0.0/16"
+service_cidr_ipv4: "10.21.0.0/16"
+
+cilium_cluster_id: "20"
+cilium_cluster_name: "ovh"
+
+argocd_enabled: false
