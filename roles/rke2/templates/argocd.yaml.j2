@@ -58,6 +58,7 @@ spec:
       valuesObject:
         spec:
           baseDomain: "{{ base_domain }}"
+          clusterIssuer: "{{ cluster_issuer }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
