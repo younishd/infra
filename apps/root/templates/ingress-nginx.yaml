@@ -21,7 +21,7 @@ spec:
               http: 80
               https: 443
           nodeSelector:
-            node-role.kubernetes.io/ingress: "true"
+            node-role.kubernetes.io/control-plane: "true"
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: ingress-nginx
