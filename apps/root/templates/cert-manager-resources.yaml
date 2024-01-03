@@ -11,11 +11,6 @@ spec:
     repoURL: https://github.com/younishd/infra
     targetRevision: master
     path: apps/cert-manager-resources
-    helm:
-      releaseName: cert-manager-resources
-      valuesObject:
-        spec:
-          email: {{ .Values.spec.certManager.email }}
   destination:
     server: {{ .Values.spec.destination.server }}
     namespace: argo-cd
