@@ -21,7 +21,7 @@ spec:
               paths:
                 - /data
   destination:
-    name: {{ .Values.auxCluster.name }}
+    name: ovh-cluster
     namespace: local-path-storage
   syncPolicy:
     automated:

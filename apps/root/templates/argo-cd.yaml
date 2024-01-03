@@ -30,9 +30,8 @@ spec:
             ingressClassName: nginx
             hosts:
               - "argo.{{ .Values.spec.baseDomain }}"
-
   destination:
-    server: {{ .Values.spec.destination.server }}
+    name: in-cluster
     namespace: argo-cd
   syncPolicy:
     automated:
