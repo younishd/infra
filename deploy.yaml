@@ -1,3 +1,11 @@
+- name: Gather information
+  hosts: all
+  gather_facts: false
+  any_errors_fatal: true
+  tasks:
+    - name: Gather facts from first control plane node
+      ansible.builtin.setup:
+      delegate_to: '{{ groups["control_plane"][0] }}'
 - name: Roll out RKE2 on first control plane node
   hosts: control_plane[0]
   become: true
