@@ -4,8 +4,11 @@ rke2_iface: "tailscale0"
 argocd_enabled: true
 argocd_version: "5.51.6"
 
-cluster_cidr_ipv4: "10.42.0.0/16"
-service_cidr_ipv4: "10.43.0.0/16"
+cluster_cidr_ipv4: ""
+service_cidr_ipv4: ""
+
+cilium_cluster_id: ""
+cilium_cluster_name: ""
 
 node_labels: {}
 
