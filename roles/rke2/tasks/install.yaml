@@ -27,7 +27,7 @@
 
 - name: Determine own IPv4 address
   ansible.builtin.set_fact:
-    rke2_node_ipv4: '{{ hostvars[groups["control_plane"][0]]["ansible_" + rke2_iface]["ipv4"]["address"] }}'
+    rke2_node_ipv4: '{{ hostvars[inventory_hostname]["ansible_" + rke2_iface]["ipv4"]["address"] }}'
 
 - name: Look up RKE2 node token on first control plane node
   when: inventory_hostname != groups["control_plane"][0]
