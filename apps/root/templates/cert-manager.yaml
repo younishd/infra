@@ -33,10 +33,10 @@ spec:
       destination:
         server: "{{ `{{ server }}` }}"
         namespace: cert-manager
-  syncPolicy:
-    automated:
-      prune: false
-      allowEmpty: false
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+      syncPolicy:
+        automated:
+          prune: false
+          allowEmpty: false
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
