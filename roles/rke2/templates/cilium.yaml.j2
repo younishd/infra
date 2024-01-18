@@ -1,9 +1,14 @@
 apiVersion: helm.cattle.io/v1
-kind: HelmChartConfig
+kind: HelmChart
 metadata:
-  name: rke2-cilium
+  name: cilium
   namespace: kube-system
 spec:
+  repo: https://helm.cilium.io
+  chart: cilium
+  version: "{{ cilium_version }}"
+  targetNamespace: kube-system
+  bootstrap: true
   valuesContent: |-
     k8sServiceHost: {{ rke2_master_ipv4 }}
     k8sServicePort: 6443
