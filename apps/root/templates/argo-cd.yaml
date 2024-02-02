@@ -19,7 +19,7 @@ spec:
             node-role.kubernetes.io/control-plane: "true"
         configs:
           params:
-            server.insecure: true
+            server.insecure: false
           secret:
             createSecret: false
         server:
