@@ -1,0 +1,13 @@
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  url: "plex.{{ .Values.spec.baseDomain }}"
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
+
+pms:
+  storageClassName: local-path
+  configStorage: 10Gi
+
+nodeSelector:
+  kubernetes.io/hostname: "savanna-plateau"
