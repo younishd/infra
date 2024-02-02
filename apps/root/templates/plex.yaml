@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    chart: plex/plex-media-server
+    chart: plex-media-server
     repoURL: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
     targetRevision: "0.1.8"
     helm:
