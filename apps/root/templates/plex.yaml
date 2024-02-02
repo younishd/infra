@@ -13,8 +13,8 @@ spec:
     targetRevision: "0.1.8"
     helm:
       releaseName: plex
-      valueFiles:
-        - config/plex.yaml
+      values: |
+        {{ .Files.Get "../config/plex.yaml" | indent 8 }}
   destination:
     name: ovh-cluster
     namespace: plex
