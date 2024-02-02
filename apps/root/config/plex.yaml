@@ -9,9 +9,5 @@ pms:
   storageClassName: local-path
   configStorage: 10Gi
 
-service:
-  type: NodePort
-  port: 32400
-
 nodeSelector:
   kubernetes.io/hostname: "savanna-plateau"
