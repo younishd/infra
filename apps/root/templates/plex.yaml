@@ -14,7 +14,7 @@ spec:
     helm:
       releaseName: plex
       values: |
-        {{ tpl (.Files.Get "config/plex.yaml") . | indent 8 }}
+        {{- tpl (.Files.Get "config/plex.yaml") . | nindent 8 }}
   destination:
     name: ovh-cluster
     namespace: plex
