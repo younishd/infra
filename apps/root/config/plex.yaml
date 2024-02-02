@@ -1,7 +1,7 @@
 ingress:
   enabled: true
   ingressClassName: "nginx"
-  url: "plex.{{ .Values.spec.baseDomain }}"
+  url: "plex.dev.{{ .Values.spec.baseDomain }}"
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
 
