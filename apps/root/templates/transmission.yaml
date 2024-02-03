@@ -8,7 +8,6 @@ metadata:
 spec:
   project: default
   source:
-    chart: transmission
     repoURL: https://github.com/younishd/infra
     targetRevision: master
     path: apps/transmission
