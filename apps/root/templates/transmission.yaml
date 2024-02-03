@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: transmission
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: transmission
+    repoURL: https://github.com/younishd/infra
+    targetRevision: master
+    path: apps/transmission
+    helm:
+      releaseName: transmission
+      values: |
+        {{- tpl (.Files.Get "config/transmission.yaml") . | nindent 8 }}
+  destination:
+    name: ovh-cluster
+    namespace: transmission
+  syncPolicy:
+    automated:
+      prune: false
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

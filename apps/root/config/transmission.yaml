@@ -1,0 +1,12 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostname: "tx.dev.{{ .Values.spec.baseDomain }}"
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
+
+persistence:
+  enabled: true
+  existingClaim: plex-volume
+
+existingSecret: transmission-secret
