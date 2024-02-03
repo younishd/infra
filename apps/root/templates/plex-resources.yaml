@@ -10,7 +10,7 @@ spec:
     targetRevision: master
     path: apps/plex-resources
   destination:
-    server: ovh-cluster
+    name: ovh-cluster
     namespace: plex
   syncPolicy:
     automated:
