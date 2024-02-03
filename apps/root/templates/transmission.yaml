@@ -17,7 +17,7 @@ spec:
         {{- tpl (.Files.Get "config/transmission.yaml") . | nindent 8 }}
   destination:
     name: ovh-cluster
-    namespace: transmission
+    namespace: plex
   syncPolicy:
     automated:
       prune: false

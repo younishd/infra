@@ -13,7 +13,7 @@ spec:
     path: apps/transmission-resources
   destination:
     name: ovh-cluster
-    namespace: transmission
+    namespace: plex
   syncPolicy:
     automated:
       prune: false
