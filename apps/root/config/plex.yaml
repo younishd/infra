@@ -11,3 +11,12 @@ pms:
 
 nodeSelector:
   kubernetes.io/hostname: "savanna-plateau"
+
+extraVolumeMounts:
+  - name: some-volume-name
+    mountPath: /video
+
+extraVolumes:
+  - name: some-volume-name
+    persistentVolumeClaim:
+      claimName: plex-volume
