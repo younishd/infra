@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: transmission-deployment
+  name: transmission
   labels:
     app.kubernetes.io/name: transmission
 spec:
