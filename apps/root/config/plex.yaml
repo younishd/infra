@@ -20,3 +20,4 @@ extraVolumes:
   - name: some-volume-name
     persistentVolumeClaim:
       claimName: plex-volume
+      readOnly: true
