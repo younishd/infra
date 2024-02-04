@@ -22,4 +22,8 @@ spec:
                 name: transmission-svc
                 port:
                   number: 9091
+  tls:
+  - hosts:
+    - {{ .Values.ingress.hostname }}
+    secretName: transmission-ingress
 {{- end -}}
