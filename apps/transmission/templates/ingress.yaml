@@ -23,7 +23,7 @@ spec:
                 port:
                   number: 9091
   tls:
-  - hosts:
-    - {{ .Values.ingress.hostname }}
-    secretName: transmission-ingress
+    - hosts:
+      - {{ .Values.ingress.hostname }}
+      secretName: transmission-ingress
 {{- end -}}

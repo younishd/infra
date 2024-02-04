@@ -30,6 +30,10 @@ spec:
             ingressClassName: nginx
             hosts:
               - "argo.{{ .Values.spec.baseDomain }}"
+            tls:
+              - secretName: argo-cd-ingress
+                hosts:
+                  - "argo.{{ .Values.spec.baseDomain }}"
   destination:
     name: in-cluster
     namespace: argo-cd
