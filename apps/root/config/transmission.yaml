@@ -1,6 +1,6 @@
 ingress:
   enabled: true
-  ingressClassName: nginx-tailnet
+  ingressClassName: nginx-public
   hostname: "tx.dev.{{ .Values.spec.baseDomain }}"
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
