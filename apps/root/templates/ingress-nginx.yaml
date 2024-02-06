@@ -5,10 +5,20 @@ metadata:
   namespace: argo-cd
 spec:
   generators:
-    - clusters: {}
+    - matrix:
+        generators:
+          - clusters: {}
+          - list:
+              elements:
+                - scope: public
+                  http: "80"
+                  https: "443"
+                - scope: tailnet
+                  http: "8880"
+                  https: "4443"
   template:
     metadata:
-      name: "ingress-nginx-{{ `{{ name }}` }}"
+      name: "ingress-nginx-{{ `{{ name }}-{{ scope }}` }}"
       namespace: argo-cd
       finalizers:
         - resources-finalizer.argocd.argoproj.io
@@ -25,8 +35,10 @@ spec:
               service:
                 type: "NodePort"
                 nodePorts:
-                  http: 80
-                  https: 443
+                  http: "{{ `{{ http }}` }}"
+                  https: "{{ `{{ https }}` }}"
+              ingressClassResource:
+                name: "nginx-{{ `{{ scope }}` }}"
               nodeSelector:
                 node-role.kubernetes.io/control-plane: "true"
       destination:

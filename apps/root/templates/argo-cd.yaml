@@ -27,7 +27,7 @@ spec:
             enabled: true
             annotations:
               cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
-            ingressClassName: nginx
+            ingressClassName: nginx-tailnet
             hosts:
               - "argo.{{ .Values.spec.baseDomain }}"
             tls:
