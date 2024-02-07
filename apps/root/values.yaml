@@ -1,3 +1,5 @@
 spec:
   baseDomain: example.com
-  clusterIssuer: selfsigned
+  clusterIssuer:
+    public: selfsigned
+    tailnet: selfsigned

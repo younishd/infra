@@ -3,7 +3,7 @@ ingress:
   ingressClassName: nginx-public
   url: "plex.dev.{{ .Values.spec.baseDomain }}"
   annotations:
-    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.public }}
 
 pms:
   storageClassName: local-path

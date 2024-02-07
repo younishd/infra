@@ -2,7 +2,8 @@ rke2_version: "v1.29.0+rke2r1"
 rke2_iface: "tailscale0"
 
 base_domain: "example.com"
-cluster_issuer: "letsencrypt-staging"
+cluster_issuer_public: "letsencrypt-public-staging"
+cluster_issuer_tailnet: "letsencrypt-tailnet-staging"
 
 argocd_enabled: true
 argocd_version: "5.51.6"

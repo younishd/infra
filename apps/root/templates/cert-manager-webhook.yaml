@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cert-manager-webhook
+  namespace: argo-cd
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "cert-manager-webhook-{{ `{{ name }}` }}"
+      namespace: argo-cd
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        chart: cert-manager-webhook-gandi
+        repoURL: https://bwolf.github.io/cert-manager-webhook-gandi
+        targetRevision: "v0.2.0"
+        helm:
+          releaseName: cert-manager-webhook-gandi
+          valuesObject:
+            nodeSelector:
+              node-role.kubernetes.io/control-plane: "true"
+      destination:
+        server: "{{ `{{ server }}` }}"
+        namespace: cert-manager
+      syncPolicy:
+        automated:
+          prune: false
+          allowEmpty: false
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

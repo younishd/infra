@@ -26,7 +26,7 @@ spec:
           ingress:
             enabled: true
             annotations:
-              cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer }}
+              cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.public }}
             ingressClassName: nginx-public
             hosts:
               - "argo.{{ .Values.spec.baseDomain }}"
