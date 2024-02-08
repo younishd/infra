@@ -39,6 +39,7 @@ spec:
                   https: "{{ `{{ https }}` }}"
               ingressClassResource:
                 name: "nginx-{{ `{{ scope }}` }}"
+              ingressClass: "nginx-{{ `{{ scope }}` }}"
               nodeSelector:
                 node-role.kubernetes.io/control-plane: "true"
       destination:
