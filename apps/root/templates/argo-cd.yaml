@@ -26,14 +26,14 @@ spec:
           ingress:
             enabled: true
             annotations:
-              cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.public }}
-            ingressClassName: nginx-public
+              cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.tailnet }}
+            ingressClassName: nginx-tailnet
             hosts:
-              - "argo.{{ .Values.spec.baseDomain }}"
+              - "argo.tail.{{ .Values.spec.baseDomain }}"
             tls:
               - secretName: argo-cd-ingress
                 hosts:
-                  - "argo.{{ .Values.spec.baseDomain }}"
+                  - "argo.tail.{{ .Values.spec.baseDomain }}"
   destination:
     name: in-cluster
     namespace: argo-cd
