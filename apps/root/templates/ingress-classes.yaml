@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ingress-resources
+  namespace: argo-cd
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "ingress-resources-{{ `{{ name }}` }}"
+      namespace: argo-cd
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/younishd/infra
+        targetRevision: master
+        path: apps/ingress-resources
+      destination:
+        server: "{{ `{{ server }}` }}"
+        namespace: "kube-system"
+      syncPolicy:
+        automated:
+          prune: true
+          allowEmpty: false
+          selfHeal: true
