@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nextcloud
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: nextcloud
+    repoURL: https://nextcloud.github.io/helm/
+    targetRevision: "4.6.*"
+    helm:
+      releaseName: nextcloud
+      values: |
+        {{- tpl (.Files.Get "config/nextcloud.yaml") . | nindent 8 }}
+  destination:
+    name: ovh-cluster
+    namespace: nextcloud
+  syncPolicy:
+    automated:
+      prune: false
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

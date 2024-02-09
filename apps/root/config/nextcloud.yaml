@@ -1,0 +1,54 @@
+nextcloud:
+  host: "cloud.dev.{{ .Values.spec.baseDomain }}"
+  existingSecret:
+    enabled: true
+    secretName: nextcloud-auth
+    usernameKey: username
+    passwordKey: password
+
+nodeSelector:
+  kubernetes.io/hostname: savanna-plateau
+
+ingress:
+  enabled: true
+  className: nginx-public
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 4G
+    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.public }}
+  tls:
+    - secretName: nextcloud-tls
+      hosts:
+        - "cloud.dev.{{ .Values.spec.baseDomain }}"
+
+persistence:
+  enabled: true
+  existingClaim: nextcloud-volume
+
+internalDatabase:
+  enabled: false
+
+externalDatabase:
+  enabled: true
+  type: mysql
+  host: mariadb.nextcloud.svc.cluster.local
+  user: nextcloud
+  database: nextcloud
+  existingSecret:
+    enabled: true
+    secretName: mariadb-auth
+    passwordKey: mariadb-password
+
+mariadb:
+  enabled: true
+  auth:
+    username: nextcloud
+    database: nextcloud
+    existingSecret: mariadb-auth
+  primary:
+    nodeSelector:
+      kubernetes.io/hostname: savanna-plateau
+    persistence:
+      enabled: true
+      storageClass: local-path
+      accessMode: ReadWriteOnce
+      size: 10Gi
