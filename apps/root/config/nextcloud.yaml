@@ -58,3 +58,6 @@ mariadb:
       storageClass: local-path
       accessMode: ReadWriteOnce
       size: 10Gi
+
+cronjob:
+  enabled: true
