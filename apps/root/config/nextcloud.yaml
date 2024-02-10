@@ -5,6 +5,12 @@ nextcloud:
     secretName: nextcloud-auth
     usernameKey: username
     passwordKey: password
+  configs:
+    trusted.config.php: |-
+      <?php
+      $CONFIG = [
+        'trusted_domains' => ['cloud.dev.{{ .Values.spec.baseDomain }}']
+      ];
 
 nodeSelector:
   kubernetes.io/hostname: savanna-plateau
@@ -52,10 +58,3 @@ mariadb:
       storageClass: local-path
       accessMode: ReadWriteOnce
       size: 10Gi
-
-configs:
-  trusted.config.php: |-
-    <?php
-    $CONFIG = [
-      'trusted_domains' => ['cloud.dev.{{ .Values.spec.baseDomain }}']
-    ];
