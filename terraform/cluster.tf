@@ -27,6 +27,12 @@ resource "hcloud_server" "control_plane" {
     ip         = cidrhost(var.subnet_cidr, count.index + 2)
   }
 
+  lifecycle {
+    ignore_changes = [
+      user_data
+    ]
+  }
+
   depends_on = [
     hcloud_network.private,
     hcloud_primary_ip.public
@@ -55,6 +61,12 @@ resource "hcloud_server" "data_plane" {
   network {
     network_id = hcloud_network.private.id
     ip         = cidrhost(var.subnet_cidr, count.index + var.count_control_plane + 2)
+  }
+
+  lifecycle {
+    ignore_changes = [
+      user_data
+    ]
   }
 
   depends_on = [
