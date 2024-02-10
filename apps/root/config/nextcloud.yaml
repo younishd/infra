@@ -30,13 +30,13 @@ internalDatabase:
 externalDatabase:
   enabled: true
   type: mysql
-  host: nextcloud-mariadb.nextcloud.svc.cluster.local
-  user: nextcloud
-  database: nextcloud
   existingSecret:
     enabled: true
     secretName: mariadb-auth
+    databaseKey: mariadb-database
+    usernameKey: mariadb-username
     passwordKey: mariadb-password
+    hostKey: mariadb-host
 
 mariadb:
   enabled: true
