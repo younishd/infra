@@ -52,3 +52,10 @@ mariadb:
       storageClass: local-path
       accessMode: ReadWriteOnce
       size: 10Gi
+
+configs:
+  trusted.config.php: |-
+    <?php
+    $CONFIG = [
+      'trusted_domains' => ['cloud.dev.{{ .Values.spec.baseDomain }}']
+    ];
