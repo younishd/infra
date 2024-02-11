@@ -9,6 +9,8 @@ mastodon:
     username: olaf
     email: olaf@example.com
   local_domain: "mastodon.{{ .Values.spec.baseDomain }}"
+  secrets:
+    existingSecret: "mastodon-secrets"
 
 ingress:
   enabled: true
