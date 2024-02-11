@@ -1,0 +1,54 @@
+image:
+  repository: ghcr.io/mastodon/mastodon
+  tag: edge
+  pullPolicy: Always
+
+mastodon:
+  createAdmin:
+    enabled: true
+    username: olaf
+    email: olaf@example.com
+  local_domain: "mastodon.{{ .Values.spec.baseDomain }}"
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.public }}
+    nginx.ingress.kubernetes.io/proxy-body-size: 40m
+  ingressClassName: nginx-public
+  hosts:
+    - host: "mastodon.{{ .Values.spec.baseDomain }}"
+      paths:
+        - path: "/"
+  tls:
+    - secretName: mastodon-tls
+      hosts:
+        - "mastodon.{{ .Values.spec.baseDomain }}"
+
+postgresql:
+  enabled: true
+  auth:
+    database: mastodon_production
+    username: mastodon
+    existingSecret: "postgres-auth"
+
+redis:
+  enabled: true
+  auth:
+    existingSecret: "redis-auth"
+  replica:
+    replicaCount: 1
+
+nodeSelector:
+  node-role.kubernetes.io/data-plane: "true"
+
+affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values:
+                - rails
+        topologyKey: kubernetes.io/hostname

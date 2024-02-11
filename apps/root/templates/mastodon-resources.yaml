@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mastodon-resources
+  namespace: argo-cd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/younishd/infra
+    targetRevision: master
+    path: apps/mastodon-resources
+  destination:
+    name: in-cluster
+    namespace: mastodon
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
