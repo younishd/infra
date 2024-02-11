@@ -5,9 +5,7 @@ image:
 
 mastodon:
   createAdmin:
-    enabled: true
-    username: olaf
-    email: olaf@example.com
+    enabled: false
   local_domain: "mastodon.dev.{{ .Values.spec.baseDomain }}"
   secrets:
     existingSecret: "mastodon-secrets"
