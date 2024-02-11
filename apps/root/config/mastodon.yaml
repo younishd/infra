@@ -11,6 +11,9 @@ mastodon:
   local_domain: "mastodon.{{ .Values.spec.baseDomain }}"
   secrets:
     existingSecret: "mastodon-secrets"
+  hooks:
+    dbMigrate:
+      enabled: false
   persistence:
     assets:
       storageClassName: local-path
