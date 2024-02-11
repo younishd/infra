@@ -41,6 +41,20 @@ mastodon:
                   values:
                     - rails
             topologyKey: kubernetes.io/hostname
+  smtp:
+    auth_method: plain
+    ca_file: /etc/ssl/certs/ca-certificates.crt
+    delivery_method: smtp
+    domain: "mastodon.{{ .Values.spec.baseDomain }}"
+    enable_starttls: "auto"
+    from_address: "noreply@mastodon.{{ .Values.spec.baseDomain }}"
+    return_path:
+    openssl_verify_mode: none
+    port: 587
+    reply_to:
+    server: smtp.gmail.com
+    tls: false
+    existingSecret: mastodon-smtp
 
 ingress:
   enabled: true
