@@ -8,7 +8,7 @@ mastodon:
     enabled: true
     username: olaf
     email: olaf@example.com
-  local_domain: "mastodon.{{ .Values.spec.baseDomain }}"
+  local_domain: "mastodon.dev.{{ .Values.spec.baseDomain }}"
   secrets:
     existingSecret: "mastodon-secrets"
   hooks:
@@ -45,9 +45,9 @@ mastodon:
     auth_method: plain
     ca_file: /etc/ssl/certs/ca-certificates.crt
     delivery_method: smtp
-    domain: "mastodon.{{ .Values.spec.baseDomain }}"
+    domain: "mastodon.dev.{{ .Values.spec.baseDomain }}"
     enable_starttls: "auto"
-    from_address: "noreply@mastodon.{{ .Values.spec.baseDomain }}"
+    from_address: "noreply@mastodon.dev.{{ .Values.spec.baseDomain }}"
     return_path:
     openssl_verify_mode: none
     port: 587
@@ -63,13 +63,13 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-body-size: 40m
   ingressClassName: nginx-public
   hosts:
-    - host: "mastodon.{{ .Values.spec.baseDomain }}"
+    - host: "mastodon.dev.{{ .Values.spec.baseDomain }}"
       paths:
         - path: "/"
   tls:
     - secretName: mastodon-tls
       hosts:
-        - "mastodon.{{ .Values.spec.baseDomain }}"
+        - "mastodon.dev.{{ .Values.spec.baseDomain }}"
 
 postgresql:
   enabled: true

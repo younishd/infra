@@ -10,7 +10,7 @@ spec:
     targetRevision: master
     path: apps/mastodon-resources
   destination:
-    name: in-cluster
+    name: ovh-cluster
     namespace: mastodon
   syncPolicy:
     automated:

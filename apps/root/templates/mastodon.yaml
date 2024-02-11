@@ -16,7 +16,7 @@ spec:
       values: |
         {{- tpl (.Files.Get "config/mastodon.yaml") . | nindent 8 }}
   destination:
-    name: in-cluster
+    name: ovh-cluster
     namespace: mastodon
   syncPolicy:
     automated:
