@@ -16,6 +16,28 @@ mastodon:
       storageClassName: local-path
     system:
       storageClassName: local-path
+  web:
+    affinity:
+      podAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                    - rails
+            topologyKey: kubernetes.io/hostname
+  sidekiq:
+    affinity:
+      podAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/part-of
+                  operator: In
+                  values:
+                    - rails
+            topologyKey: kubernetes.io/hostname
 
 ingress:
   enabled: true
@@ -48,14 +70,3 @@ redis:
 
 nodeSelector:
   node-role.kubernetes.io/data-plane: "true"
-
-affinity:
-  podAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-            - key: app.kubernetes.io/part-of
-              operator: In
-              values:
-                - rails
-        topologyKey: kubernetes.io/hostname
