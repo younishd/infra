@@ -11,6 +11,11 @@ mastodon:
   local_domain: "mastodon.{{ .Values.spec.baseDomain }}"
   secrets:
     existingSecret: "mastodon-secrets"
+  persistence:
+    assets:
+      storageClassName: local-path
+    system:
+      storageClassName: local-path
 
 ingress:
   enabled: true
