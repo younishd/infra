@@ -11,7 +11,7 @@ mastodon:
     existingSecret: "mastodon-secrets"
   hooks:
     dbMigrate:
-      enabled: true
+      enabled: false
   persistence:
     assets:
       storageClassName: local-path
