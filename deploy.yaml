@@ -20,6 +20,17 @@
       ansible.builtin.apt:
         upgrade: dist
 
+- name: Configure Tailscale on all nodes
+  hosts: all
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  tags: tailscale
+  tasks:
+    - name: Execute Tailscale role
+      ansible.builtin.import_role:
+        name: tailscale
+
 - name: Roll out RKE2 on first control plane node
   hosts: control_plane[0]
   become: true

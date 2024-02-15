@@ -1,0 +1,33 @@
+- name: Download Tailscale installer
+  ansible.builtin.get_url:
+    url: https://tailscale.com/install.sh
+    dest: /tmp/tailscale.sh
+    mode: "0700"
+
+- name: Install Tailscale
+  ansible.builtin.command: "/tmp/tailscale.sh"
+  changed_when: true
+
+- name: Enable packet forwarding
+  ansible.posix.sysctl:
+    name: "{{ item }}"
+    value: "1"
+    sysctl_set: true
+    reload: true
+    state: present
+    sysctl_file: /etc/sysctl.d/99-tailscale.conf
+  loop:
+    - net.ipv4.ip_forward
+    - net.ipv6.conf.all.forwarding
+
+- name: Install Tailscale
+  ansible.builtin.command:
+    argv:
+      - tailscale
+      - up
+      - "--authkey={{ tailscale_auth_key }}"
+  changed_when: true
+
+- name: Enable Tailscale automatic updates
+  ansible.builtin.command: "tailscale set --auto-update"
+  changed_when: true
