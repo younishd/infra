@@ -1,0 +1,4 @@
+ceph_devices:
+  - /dev/sdb
+  - /dev/sdc
+  - /dev/sdd
