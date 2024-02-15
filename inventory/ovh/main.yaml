@@ -2,8 +2,14 @@ all:
   children:
     control_plane:
       hosts:
+        frozen-river:
         savanna-plateau:
+        windswept-hills:
 
     data_plane:
+
+    ceph:
       hosts:
+        frozen-river:
         savanna-plateau:
+        windswept-hills:
