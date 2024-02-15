@@ -20,7 +20,7 @@
     - net.ipv4.ip_forward
     - net.ipv6.conf.all.forwarding
 
-- name: Install Tailscale
+- name: Bring up Tailscale
   ansible.builtin.command:
     argv:
       - tailscale
