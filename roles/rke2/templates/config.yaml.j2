@@ -2,7 +2,6 @@
 server: https://{{ rke2_master_ipv4 }}:9345
 token: {{ rke2_master_token }}
 {% endif %}
-
 cni: none
 node-ip: "{{ rke2_node_ipv4 }}"
 node-external-ip: "{{ rke2_node_ipv4 }}"
@@ -10,7 +9,6 @@ service-node-port-range: 1-65535
 disable: rke2-ingress-nginx
 disable-kube-proxy: true
 kube-controller-manager-arg: "--controllers=*,-nodeipam"
-
 {% if "control_plane" in group_names %}
 cluster-cidr: "{{ cluster_cidr_ipv4 }}"
 service-cidr: "{{ service_cidr_ipv4 }}"

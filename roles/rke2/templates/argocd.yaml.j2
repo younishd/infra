@@ -27,7 +27,7 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 stringData:
   type: git
-  url: https://github.com/younishd/infra
+  url: https://github.com/younishd/infra.git
   username: younishd
   password: "{{ github_token }}"
 ---
@@ -50,13 +50,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/younishd/infra
+    repoURL: https://github.com/younishd/infra.git
     targetRevision: master
     path: apps/root
     helm:
       releaseName: root
       valuesObject:
-        spec:
+        ingress:
           baseDomain: "{{ base_domain }}"
           clusterIssuer:
             public: "{{ cluster_issuer_public }}"
