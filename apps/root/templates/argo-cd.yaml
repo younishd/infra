@@ -30,10 +30,10 @@ spec:
             ingressClassName: nginx-tailnet
             hosts:
               - "argo.tail.{{ .Values.ingress.baseDomain }}"
-            tls:
-              - secretName: argo-cd-tls
-                hosts:
-                  - "argo.tail.{{ .Values.ingress.baseDomain }}"
+            extraTls:
+              - hosts:
+                - "argo.tail.{{ .Values.ingress.baseDomain }}"
+                secretName: argo-cd-tls
   destination:
     server: "{{ .Values.destination.server }}"
     namespace: argo-cd
