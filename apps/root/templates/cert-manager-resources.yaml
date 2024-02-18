@@ -1,30 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: cert-manager-resources
   namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  generators:
-    - clusters: {}
-  template:
-    metadata:
-      name: "cert-manager-resources-{{ `{{ name }}` }}"
-      namespace: argo-cd
-      finalizers:
-        - resources-finalizer.argocd.argoproj.io
-    spec:
-      project: default
-      source:
-        repoURL: https://github.com/younishd/infra
-        targetRevision: master
-        path: apps/cert-manager-resources
-      destination:
-        server: "{{ `{{ server }}` }}"
-        namespace: cert-manager
-      syncPolicy:
-        automated:
-          prune: false
-          allowEmpty: false
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
+  project: default
+  source:
+    repoURL: "{{ .Values.source.repoURL }}"
+    targetRevision: "{{ .Values.source.targetRevision }}"
+    path: apps/cert-manager-resources
+  destination:
+    server: "{{ .Values.destination.server }}"
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

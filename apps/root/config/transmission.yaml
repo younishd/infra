@@ -1,12 +1,12 @@
 ingress:
   enabled: true
   ingressClassName: nginx-tailnet
-  hostname: "tx.tail.dev.{{ .Values.spec.baseDomain }}"
+  hostname: "tx.tail.{{ .Values.ingress.baseDomain }}"
   annotations:
-    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.tailnet }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
 
 persistence:
   enabled: true
   existingClaim: plex-volume
 
-existingSecret: transmission-secret
+existingSecret: transmission-password

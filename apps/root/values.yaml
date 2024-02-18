@@ -1,4 +1,9 @@
-spec:
+destination:
+  server: https://kubernetes.default.svc
+source:
+  repoURL: https://github.com/younishd/infra.git
+  targetRevision: master
+ingress:
   baseDomain: example.com
   clusterIssuer:
     public: selfsigned

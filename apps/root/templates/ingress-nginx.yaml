@@ -5,20 +5,17 @@ metadata:
   namespace: argo-cd
 spec:
   generators:
-    - matrix:
-        generators:
-          - clusters: {}
-          - list:
-              elements:
-                - scope: public
-                  http: "80"
-                  https: "443"
-                - scope: tailnet
-                  http: "8880"
-                  https: "4443"
+    - list:
+        elements:
+          - scope: public
+            http: "80"
+            https: "443"
+          - scope: tailnet
+            http: "8880"
+            https: "4443"
   template:
     metadata:
-      name: "ingress-nginx-{{ `{{ name }}-{{ scope }}` }}"
+      name: "ingress-nginx-{{ `{{ scope }}` }}"
       namespace: argo-cd
       finalizers:
         - resources-finalizer.argocd.argoproj.io
@@ -32,6 +29,7 @@ spec:
           releaseName: "ingress-nginx-{{ `{{ scope }}` }}"
           valuesObject:
             controller:
+              kind: DaemonSet
               service:
                 type: "NodePort"
                 nodePorts:
@@ -44,7 +42,7 @@ spec:
               nodeSelector:
                 node-role.kubernetes.io/control-plane: "true"
       destination:
-        server: "{{ `{{ server }}` }}"
+        server: "{{ .Values.destination.server }}"
         namespace: "ingress-nginx-{{ `{{ scope }}` }}"
       syncPolicy:
         automated:

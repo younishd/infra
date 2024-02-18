@@ -8,15 +8,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/younishd/infra
-    targetRevision: master
+    repoURL: "{{ .Values.source.repoURL }}"
+    targetRevision: "{{ .Values.source.targetRevision }}"
     path: apps/transmission-resources
   destination:
-    name: ovh-cluster
+    server: "{{ .Values.destination.server }}"
     namespace: plex
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       allowEmpty: false
       selfHeal: true
     syncOptions:

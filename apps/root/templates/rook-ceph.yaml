@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mastodon
+  name: rook-ceph
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/mastodon/chart
-    targetRevision: HEAD
-    path: "."
+    chart: rook-ceph
+    repoURL: https://charts.rook.io/release
+    targetRevision: "v1.13.*"
     helm:
-      releaseName: mastodon
+      releaseName: rook-ceph
       values: |
-        {{- tpl (.Files.Get "config/mastodon.yaml") . | nindent 8 }}
+        {{- tpl (.Files.Get "config/rook-ceph.yaml") . | nindent 8 }}
   destination:
-    name: ovh-cluster
-    namespace: mastodon
+    server: "{{ .Values.destination.server }}"
+    namespace: rook-ceph
   syncPolicy:
     automated:
       prune: true
