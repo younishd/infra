@@ -23,6 +23,25 @@ cephClusterSpec:
                 operator: In
                 values:
                 - "true"
+  storage:
+    useAllNodes: true
+    useAllDevices: false
+    nodes:
+      - name: "frozen-river"
+        devices:
+          - name: "/dev/sdb"
+          - name: "/dev/sdc"
+          - name: "/dev/sdd"
+      - name: "savanna-plateau"
+        devices:
+          - name: "/dev/sdb"
+          - name: "/dev/sdc"
+          - name: "/dev/sdd"
+      - name: "windswept-hills"
+        devices:
+          - name: "/dev/sdb"
+          - name: "/dev/sdc"
+          - name: "/dev/sdd"
 
 ingress:
   dashboard:
