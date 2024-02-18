@@ -15,6 +15,7 @@ spec:
       releaseName: argo-cd
       valuesObject:
         global:
+          domain: "argo.tail.{{ .Values.ingress.baseDomain }}"
           nodeSelector:
             node-role.kubernetes.io/control-plane: "true"
         configs:
@@ -25,11 +26,9 @@ spec:
         server:
           ingress:
             enabled: true
+            ingressClassName: nginx-tailnet
             annotations:
               cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
-            ingressClassName: nginx-tailnet
-            hosts:
-              - "argo.tail.{{ .Values.ingress.baseDomain }}"
             extraTls:
               - hosts:
                 - "argo.tail.{{ .Values.ingress.baseDomain }}"
