@@ -29,19 +29,19 @@ cephClusterSpec:
     nodes:
       - name: "frozen-river"
         devices:
-          - name: "/dev/sdb"
-          - name: "/dev/sdc"
-          - name: "/dev/sdd"
+          - name: "sdb"
+          - name: "sdc"
+          - name: "sdd"
       - name: "savanna-plateau"
         devices:
-          - name: "/dev/sdb"
-          - name: "/dev/sdc"
-          - name: "/dev/sdd"
+          - name: "sdb"
+          - name: "sdc"
+          - name: "sdd"
       - name: "windswept-hills"
         devices:
-          - name: "/dev/sdb"
-          - name: "/dev/sdc"
-          - name: "/dev/sdd"
+          - name: "sdb"
+          - name: "sdc"
+          - name: "sdd"
 
 ingress:
   dashboard:
