@@ -24,25 +24,8 @@ cephClusterSpec:
                 values:
                 - "true"
   storage:
-    useAllNodes: false
-    useAllDevices: false
-    deviceFilter:
-    nodes:
-      - name: "frozen-river"
-        devices:
-          - name: "sdb"
-          - name: "sdc"
-          - name: "sdd"
-      - name: "savanna-plateau"
-        devices:
-          - name: "sdb"
-          - name: "sdc"
-          - name: "sdd"
-      - name: "windswept-hills"
-        devices:
-          - name: "sdb"
-          - name: "sdc"
-          - name: "sdd"
+    useAllNodes: true
+    useAllDevices: true
 
 ingress:
   dashboard:
