@@ -24,8 +24,9 @@ cephClusterSpec:
                 values:
                 - "true"
   storage:
-    useAllNodes: true
+    useAllNodes: false
     useAllDevices: false
+    deviceFilter:
     nodes:
       - name: "frozen-river"
         devices:
