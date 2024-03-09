@@ -61,8 +61,8 @@
 - name: Install Argo CD Helm chart etc.
   when: argocd_enabled and inventory_hostname in groups["control_plane"]
   ansible.builtin.template:
-    src: argocd.yaml.j2
-    dest: /var/lib/rancher/rke2/server/manifests/argocd.yaml
+    src: argo-cd.yaml.j2
+    dest: /var/lib/rancher/rke2/server/manifests/argo-cd.yaml
     owner: root
     group: root
     mode: "0644"
