@@ -9,8 +9,6 @@ node_labels:
     node-role.kubernetes.io/control-plane: "true"
   data_plane:
     node-role.kubernetes.io/data-plane: "true"
-  ceph:
-    node-role.kubernetes.io/ceph: "true"
 
 cluster_cidr_ipv4: "10.10.0.0/16"
 service_cidr_ipv4: "10.11.0.0/16"
