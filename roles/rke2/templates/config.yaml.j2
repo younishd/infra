@@ -2,6 +2,8 @@
 server: https://{{ rke2_master_ipv4 }}:9345
 token: {{ rke2_master_token }}
 {% endif %}
+tls-san:
+  - {{ cluster_domain }}
 cni: none
 node-ip: "{{ rke2_node_ipv4 }}"
 node-external-ip: "{{ rke2_node_ipv4 }}"
