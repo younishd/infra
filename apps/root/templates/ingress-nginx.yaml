@@ -12,7 +12,7 @@ spec:
             https: "443"
           - scope: tailnet
             http: "8880"
-            https: "4443"
+            https: "44443"
   template:
     metadata:
       name: "ingress-nginx-{{ `{{ scope }}` }}"
