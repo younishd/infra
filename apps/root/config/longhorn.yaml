@@ -1,3 +1,7 @@
+# Needs to be disabled when installing Longhorn with Argo CD
+preUpgradeChecker:
+  jobEnabled: false
+
 ingress:
   enabled: true
   ingressClassName: nginx-tailnet
