@@ -10,9 +10,11 @@ spec:
           - scope: public
             http: "80"
             https: "443"
+            admissionWebhooks: "8443"
           - scope: tailnet
             http: "10080"
             https: "10443"
+            admissionWebhooks: "18443"
   template:
     metadata:
       name: "ingress-nginx-{{ `{{ scope }}` }}"
@@ -39,6 +41,9 @@ spec:
                 ports:
                   http: "{{ `{{ http }}` }}"
                   https: "{{ `{{ https }}` }}"
+              admissionWebhooks:
+                enabled: true
+                port: "{{ `{{ admissionWebhooks }}` }}"
               ingressClassResource:
                 name: "nginx-{{ `{{ scope }}` }}"
                 controllerValue: "k8s.io/nginx-{{ `{{ scope }}` }}"
