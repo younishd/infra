@@ -11,8 +11,8 @@ spec:
             http: "80"
             https: "443"
           - scope: tailnet
-            http: "30080"
-            https: "30443"
+            http: "10080"
+            https: "10443"
   template:
     metadata:
       name: "ingress-nginx-{{ `{{ scope }}` }}"
@@ -30,9 +30,13 @@ spec:
           valuesObject:
             controller:
               kind: DaemonSet
+              hostNetwork: true
+              containerPort:
+                http: "{{ `{{ http }}` }}"
+                https: "{{ `{{ https }}` }}"
               service:
-                type: "NodePort"
-                nodePorts:
+                type: ClusterIP
+                ports:
                   http: "{{ `{{ http }}` }}"
                   https: "{{ `{{ https }}` }}"
               ingressClassResource:
