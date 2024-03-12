@@ -15,6 +15,8 @@ spec:
             status: "10246"
             stream: "10247"
             healthz: "10254"
+            profiler: "10245"
+            sslPassthroughProxy: "442"
           - scope: tailnet
             http: "10080"
             https: "10443"
@@ -23,6 +25,8 @@ spec:
             status: "11246"
             stream: "11247"
             healthz: "11254"
+            profiler: "11245"
+            sslPassthroughProxy: "10442"
   template:
     metadata:
       name: "ingress-nginx-{{ `{{ scope }}` }}"
@@ -48,6 +52,8 @@ spec:
                 status-port: "{{ `{{ status }}` }}"
                 stream-port: "{{ `{{ stream }}` }}"
                 healthz-port: "{{ `{{ healthz }}` }}"
+                profiler-port: "{{ `{{ profiler }}` }}"
+                ssl-passthrough-proxy-port: "{{ `{{ sslPassthroughProxy }}` }}"
               containerPort:
                 http: "{{ `{{ http }}` }}"
                 https: "{{ `{{ https }}` }}"
