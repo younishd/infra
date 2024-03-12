@@ -12,11 +12,13 @@ spec:
             https: "443"
             admissionWebhooks: "8443"
             defaultServer: "8181"
+            status: "10246"
           - scope: tailnet
             http: "10080"
             https: "10443"
             admissionWebhooks: "18443"
             defaultServer: "18181"
+            status: "10247"
   template:
     metadata:
       name: "ingress-nginx-{{ `{{ scope }}` }}"
@@ -39,6 +41,7 @@ spec:
                 http-port: "{{ `{{ http }}` }}"
                 https-port: "{{ `{{ https }}` }}"
                 default-server-port: "{{ `{{ defaultServer }}` }}"
+                status-port: "{{ `{{ status }}` }}"
               containerPort:
                 http: "{{ `{{ http }}` }}"
                 https: "{{ `{{ https }}` }}"
