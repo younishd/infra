@@ -1,0 +1,60 @@
+environment: production
+
+localDomain: "nileane.{{ .Values.ingress.baseDomain }}"
+
+smtp:
+  from_address: "mastodon@nileane.{{ .Values.ingress.baseDomain }}"
+  domain: "nileane.{{ .Values.ingress.baseDomain }}"
+  reply_to: "noreply@nileane.{{ .Values.ingress.baseDomain }}"
+  existingSecret: "mastodon-smtp"
+  existingSecretLoginKey: "login"
+  existingSecretPasswordKey: "password"
+  existingSecretServerKey: "server"
+
+web:
+  replicaCount: 2
+
+sidekiq:
+  replicaCount: 2
+
+streaming:
+  replicaCount: 2
+
+persistence:
+  enabled: true
+  storageClass: longhorn
+  size: 200Gi
+
+redis:
+  enabled: true
+  auth:
+    enabled: true
+    existingSecret: mastodon-redis
+    existingSecretPasswordKey: password
+
+postgresql:
+  enabled: true
+  auth:
+    database: mastodon
+    existingSecret: mastodon-postgresql
+
+minio:
+  enabled: true
+  auth:
+    existingSecret: mastodon-minio
+
+elasticsearch:
+  enabled: true
+
+apache:
+  enabled: true
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    ingressClassName: nginx-public
+    hostname: "nileane.{{ .Values.ingress.baseDomain }}"
+    path: /
+    annotations:
+      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.public }}
+    tls: true
