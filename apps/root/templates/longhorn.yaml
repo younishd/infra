@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: longhorn
+    repoURL: https://charts.longhorn.io
+    targetRevision: "1.6.*"
+    helm:
+      releaseName: longhorn
+      values: |
+        {{- tpl (.Files.Get "config/longhorn.yaml") . | nindent 8 }}
+  destination:
+    server: "{{ .Values.destination.server }}"
+    namespace: longhorn-system
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

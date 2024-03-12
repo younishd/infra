@@ -1,0 +1,19 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx-tailnet
+  host: "longhorn.tail.{{ .Values.ingress.baseDomain }}"
+  tls: true
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
+
+longhornManager:
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: "true"
+
+longhornDriver:
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: "true"
+
+longhornUI:
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: "true"
