@@ -7,7 +7,6 @@ tls-san:
 cni: none
 node-ip: "{{ rke2_node_ipv4 }}"
 node-external-ip: "{{ rke2_node_ipv4 }}"
-service-node-port-range: 1-65535
 disable: rke2-ingress-nginx
 disable-kube-proxy: true
 kube-controller-manager-arg: "--controllers=*,-nodeipam"
