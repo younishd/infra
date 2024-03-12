@@ -13,12 +13,16 @@ spec:
             admissionWebhooks: "8443"
             defaultServer: "8181"
             status: "10246"
+            stream: "10247"
+            healthz: "10254"
           - scope: tailnet
             http: "10080"
             https: "10443"
             admissionWebhooks: "18443"
             defaultServer: "18181"
-            status: "10247"
+            status: "11246"
+            stream: "11247"
+            healthz: "11254"
   template:
     metadata:
       name: "ingress-nginx-{{ `{{ scope }}` }}"
@@ -42,6 +46,8 @@ spec:
                 https-port: "{{ `{{ https }}` }}"
                 default-server-port: "{{ `{{ defaultServer }}` }}"
                 status-port: "{{ `{{ status }}` }}"
+                stream-port: "{{ `{{ stream }}` }}"
+                healthz-port: "{{ `{{ healthz }}` }}"
               containerPort:
                 http: "{{ `{{ http }}` }}"
                 https: "{{ `{{ https }}` }}"
