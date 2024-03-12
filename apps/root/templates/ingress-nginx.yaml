@@ -33,6 +33,9 @@ spec:
             controller:
               kind: DaemonSet
               hostNetwork: true
+              extraArgs:
+                http-port: "{{ `{{ http }}` }}"
+                https-port: "{{ `{{ https }}` }}"
               containerPort:
                 http: "{{ `{{ http }}` }}"
                 https: "{{ `{{ https }}` }}"
