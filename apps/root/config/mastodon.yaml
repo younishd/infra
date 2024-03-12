@@ -2,6 +2,8 @@ environment: production
 
 localDomain: "nileane.{{ .Values.ingress.baseDomain }}"
 
+enableS3: false
+
 smtp:
   from_address: "mastodon@nileane.{{ .Values.ingress.baseDomain }}"
   domain: "nileane.{{ .Values.ingress.baseDomain }}"
@@ -22,7 +24,6 @@ streaming:
 
 persistence:
   enabled: true
-  storageClass: longhorn
   size: 200Gi
 
 redis:
@@ -39,9 +40,7 @@ postgresql:
     existingSecret: mastodon-postgresql
 
 minio:
-  enabled: true
-  auth:
-    existingSecret: mastodon-minio
+  enabled: false
 
 elasticsearch:
   enabled: true
