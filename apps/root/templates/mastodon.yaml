@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    chart: mastodon
-    repoURL: oci://registry-1.docker.io/bitnamicharts
+    chart: bitnamicharts/mastodon
+    repoURL: oci://registry-1.docker.io
     targetRevision: "4.7.1"
     helm:
       releaseName: mastodon
