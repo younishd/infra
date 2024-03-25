@@ -3,6 +3,7 @@ environment: production
 localDomain: "nileane.{{ .Values.ingress.baseDomain }}"
 
 enableS3: false
+useSecureWebSocket: true
 
 smtp:
   from_address: "mastodon@nileane.{{ .Values.ingress.baseDomain }}"
