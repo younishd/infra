@@ -1,0 +1,27 @@
+minecraftServer:
+  eula: "true"
+  version: "LATEST"
+  type: "PAPER"
+  difficulty: "hard"
+  whitelist:
+  - neoprene
+  ops:
+  - neoprene
+  maxPlayers: 16
+  maxWorldSize: 1000000
+  spawnProtection: 0
+  viewDistance: 16
+  levelSeed: "-63331869743621009"
+  gameMode: survival
+  motd: '\u00a7e\u2622 \u2622 \u2622\u00a77 minecluster \u00a7e\u2622 \u2622 \u2622'
+  memory: 2048M
+  overrideServerProperties: true
+  serviceType: NodePort
+  nodePort: 30000
+
+persistence:
+  dataDir:
+    enabled: true
+    Size: 32Gi
+    accessModes:
+      - ReadWriteOnce

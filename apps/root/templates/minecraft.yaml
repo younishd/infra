@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minecraft
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: minecraft
+    repoURL: https://itzg.github.io/minecraft-server-charts
+    targetRevision: "4.15.*"
+    helm:
+      releaseName: minecraft
+      values: |
+        {{- tpl (.Files.Get "config/minecraft.yaml") . | nindent 8 }}
+  destination:
+    server: "{{ .Values.destination.server }}"
+    namespace: minecraft
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
