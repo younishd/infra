@@ -3,10 +3,8 @@ minecraftServer:
   version: "LATEST"
   type: "PAPER"
   difficulty: "hard"
-  whitelist:
-  - neoprene
-  ops:
-  - neoprene
+  whitelist: "neoprene"
+  ops: "neoprene"
   maxPlayers: 16
   maxWorldSize: 1000000
   spawnProtection: 0
