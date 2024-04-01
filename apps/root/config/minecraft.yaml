@@ -3,7 +3,7 @@ minecraftServer:
   version: "LATEST"
   type: "PAPER"
   difficulty: "hard"
-  whitelist: "neoprene"
+  whitelist: "neoprene,nileane"
   ops: "neoprene"
   maxPlayers: 16
   maxWorldSize: 1000000
