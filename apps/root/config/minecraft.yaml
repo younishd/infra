@@ -9,10 +9,10 @@ minecraftServer:
   maxWorldSize: 1000000
   spawnProtection: 0
   viewDistance: 16
-  levelSeed: "-63331869743621009"
+  levelSeed: "192421863"
   gameMode: survival
-  motd: '\u00a7e\u2622 \u2622 \u2622\u00a77 minecluster \u00a7e\u2622 \u2622 \u2622'
-  memory: 2048M
+  motd: '\u00a7bDivision\u00a7a\u00f7\u00a7eIsland'
+  memory: 3072M
   overrideServerProperties: true
   serviceType: NodePort
   nodePort: 30000
@@ -20,6 +20,6 @@ minecraftServer:
 persistence:
   dataDir:
     enabled: true
-    Size: 32Gi
+    Size: 64Gi
     accessModes:
       - ReadWriteOnce
