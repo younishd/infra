@@ -1,6 +1,6 @@
 minecraftServer:
   eula: "true"
-  version: "LATEST"
+  version: "1.20.5"
   type: "PAPER"
   difficulty: "hard"
   whitelist: "neoprene,nileane"
