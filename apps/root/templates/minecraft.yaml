@@ -10,7 +10,7 @@ spec:
   source:
     chart: minecraft
     repoURL: https://itzg.github.io/minecraft-server-charts
-    targetRevision: "4.15.*"
+    targetRevision: "4.17.*"
     helm:
       releaseName: minecraft
       values: |
@@ -22,6 +22,6 @@ spec:
     automated:
       prune: true
       allowEmpty: false
-      selfHeal: true
+      selfHeal: false
     syncOptions:
       - CreateNamespace=true
