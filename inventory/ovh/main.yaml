@@ -2,8 +2,6 @@ all:
   children:
     control_plane:
       hosts:
-        frozen-river:
-        savanna-plateau:
-        windswept-hills:
+        bubblegum:
 
     data_plane:

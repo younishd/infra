@@ -44,7 +44,7 @@ ansible all -m shell -a "sudo rke2-uninstall.sh"
 Get cluster credentials:
 
 ```sh
-ssh -Fssh/ovh.config frozen-river -- sudo cat /etc/rancher/rke2/rke2.yaml >~/.kube/config 2>/dev/null
+ssh -Fssh/ovh.config bubblegum -- sudo cat /etc/rancher/rke2/rke2.yaml >~/.kube/config 2>/dev/null
 ```
 
-Replace `127.0.0.1` with Tailscale Magic DNS name (e.g., `frozen-river`).
+Replace `127.0.0.1` with Tailscale Magic DNS name (e.g., `bubblegum`).
