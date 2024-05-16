@@ -1,6 +1,6 @@
 ansible_ssh_common_args: "-F ssh/ovh.config"
 
-base_domain: "asmr.clusterfu.co.uk"
+base_domain: "clusterfu.co.uk"
 cluster_domain: "tail.clusterfu.co.uk"
 
 cluster_issuer_public: "letsencrypt-public-staging"
