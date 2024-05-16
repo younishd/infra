@@ -17,6 +17,8 @@ spec:
         storageClass:
           defaultClass: true
           reclaimPolicy: Retain
+        nodeSelector:
+          node-role.kubernetes.io/storage: "true"
   destination:
     server: "{{ .Values.destination.server }}"
     namespace: local-path-storage
