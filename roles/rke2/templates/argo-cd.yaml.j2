@@ -56,6 +56,8 @@ spec:
     helm:
       releaseName: root
       valuesObject:
+        source:
+          targetRevision: single_node_cluster
         ingress:
           baseDomain: "{{ base_domain }}"
           clusterIssuer:
