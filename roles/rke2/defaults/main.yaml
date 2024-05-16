@@ -1,4 +1,4 @@
-rke2_version: "v1.29.0+rke2r1"
+rke2_version: "v1.30.0+rke2r1"
 rke2_iface: "tailscale0"
 
 base_domain: "example.com"
@@ -13,7 +13,7 @@ argocd_version: "6.0.*"
 cluster_cidr_ipv4: ""
 service_cidr_ipv4: ""
 
-cilium_version: "v1.15.1"
+cilium_version: "v1.15.4"
 cilium_cluster_id: ""
 cilium_cluster_name: ""
 
