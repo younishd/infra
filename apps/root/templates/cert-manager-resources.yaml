@@ -8,11 +8,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "{{ .Values.source.repoURL }}"
-    targetRevision: "{{ .Values.source.targetRevision }}"
+    repoURL: "{{ $.Values.source.repoURL }}"
+    targetRevision: "{{ $.Values.source.targetRevision }}"
     path: apps/cert-manager-resources
   destination:
-    server: "{{ .Values.destination.server }}"
+    server: "{{ $.Values.destination.server }}"
     namespace: cert-manager
   syncPolicy:
     automated:
