@@ -4,7 +4,7 @@ minecraftServer:
   type: "PAPER"
   difficulty: "hard"
   whitelist: "neoprene,nileane"
-  ops: "neoprene"
+  ops: ""
   maxPlayers: 16
   maxWorldSize: 1000000
   spawnProtection: 0
@@ -12,7 +12,7 @@ minecraftServer:
   levelSeed: "192421863"
   gameMode: survival
   motd: '\u00a7bDivision\u00a7a\u00f7\u00a7eIsland'
-  memory: 3072M
+  memory: 4096M
   overrideServerProperties: true
   serviceType: NodePort
   nodePort: 30000
