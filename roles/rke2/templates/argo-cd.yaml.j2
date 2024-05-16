@@ -51,13 +51,13 @@ spec:
   project: default
   source:
     repoURL: https://github.com/younishd/infra.git
-    targetRevision: single_node_cluster
+    targetRevision: HEAD
     path: apps/root
     helm:
       releaseName: root
       valuesObject:
         source:
-          targetRevision: single_node_cluster
+          targetRevision: HEAD
         ingress:
           baseDomain: "{{ base_domain }}"
           clusterIssuer:
