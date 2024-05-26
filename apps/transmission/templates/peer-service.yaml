@@ -7,11 +7,13 @@ spec:
     app.kubernetes.io/name: transmission
   type: NodePort
   ports:
-    - protocol: TCP
+    - name: bittorrent
+      protocol: TCP
       port: 30413
       targetPort: 30413
       nodePort: 30413
-    - protocol: UDP
+    - name: bittorrent-utp
+      protocol: UDP
       port: 30413
       targetPort: 30413
       nodePort: 30413
