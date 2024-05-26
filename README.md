@@ -9,8 +9,6 @@ ufw default allow routed
 ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
-ufw allow 50000/tcp  # transmission
-ufw allow 50000/udp  # transmission
 ufw deny in on eno1 to any  # verify iface name
 ufw enable
 ```
