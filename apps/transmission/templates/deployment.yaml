@@ -19,6 +19,7 @@ spec:
           image: lscr.io/linuxserver/transmission:4.0.5
           ports:
             - containerPort: 9091
+            - containerPort: 30413
           volumeMounts:
             - name: config
               mountPath: /config
