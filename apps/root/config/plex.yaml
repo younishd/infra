@@ -1,9 +1,9 @@
 ingress:
   enabled: true
   ingressClassName: nginx-public
-  url: "plex.{{ .Values.spec.baseDomain }}"
+  url: "plex.{{ .Values.ingress.baseDomain }}"
   annotations:
-    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.public }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.public }}
 
 pms:
   storageClassName: local-path

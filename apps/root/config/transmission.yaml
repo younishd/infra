@@ -3,7 +3,7 @@ ingress:
   ingressClassName: nginx-tailnet
   hostname: "tx.tail.{{ .Values.spec.baseDomain }}"
   annotations:
-    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.tailnet }}
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
 
 persistence:
   enabled: true
