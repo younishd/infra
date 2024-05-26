@@ -1,0 +1,11 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostname: "transmission.local"
+  annotations: {}
+
+persistence:
+  enabled: false
+  existingClaim: ""
+
+existingSecret: ""

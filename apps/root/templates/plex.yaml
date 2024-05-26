@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: plex
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: plex-media-server
+    repoURL: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
+    targetRevision: "0.3.0"
+    helm:
+      releaseName: plex
+      values: |
+        {{- tpl (.Files.Get "config/plex.yaml") . | nindent 8 }}
+  destination:
+    server: "{{ .Values.destination.server }}"
+    namespace: plex
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

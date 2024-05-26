@@ -1,0 +1,24 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx-public
+  url: "plex.{{ .Values.spec.baseDomain }}"
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.spec.clusterIssuer.public }}
+
+pms:
+  storageClassName: local-path
+  configStorage: 10Gi
+
+extraVolumeMounts:
+  - name: plex-volume
+    mountPath: /data
+
+extraVolumes:
+  - name: plex-volume
+    persistentVolumeClaim:
+      claimName: plex
+      readOnly: true
+
+service:
+  type: NodePort
+  nodePort: 32000
