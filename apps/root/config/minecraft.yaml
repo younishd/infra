@@ -16,6 +16,18 @@ minecraftServer:
   overrideServerProperties: true
   serviceType: NodePort
   nodePort: 30000
+  rcon:
+    enabled: true
+    withGeneratedPassword: false
+    port: 25575
+    existingSecret: minecraft-rcon-secret
+    secretKey: rcon-password
+  mcbackup:
+    enabled: true
+    backupInterval: 24h
+    pruneBackupsDays: 7
+    backupMethod: tar
+    destDir: /backups
 
 persistence:
   dataDir:
