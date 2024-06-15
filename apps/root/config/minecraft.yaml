@@ -22,12 +22,12 @@ minecraftServer:
     port: 25575
     existingSecret: minecraft-rcon-secret
     secretKey: rcon-password
-  mcbackup:
-    enabled: true
-    backupInterval: 24h
-    pruneBackupsDays: 7
-    backupMethod: tar
-    destDir: /backups
+mcbackup:
+  enabled: true
+  backupInterval: 24h
+  pruneBackupsDays: 7
+  backupMethod: tar
+  destDir: /backups
 
 persistence:
   dataDir:
