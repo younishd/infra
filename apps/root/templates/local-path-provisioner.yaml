@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/rancher/local-path-provisioner.git
-    targetRevision: HEAD
+    targetRevision: "0.0.28"
     path: deploy/chart/local-path-provisioner
     helm:
       releaseName: local-path-provisioner
