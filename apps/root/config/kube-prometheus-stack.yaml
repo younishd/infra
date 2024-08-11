@@ -22,3 +22,15 @@ grafana:
       - secretName: grafana-tls
         hosts:
           - "grafana.tail.{{ .Values.ingress.baseDomain }}"
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    storageSpec:
+     volumeClaimTemplate:
+       spec:
+         storageClassName: local-path
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 50Gi
