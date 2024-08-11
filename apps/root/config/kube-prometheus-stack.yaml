@@ -1,0 +1,24 @@
+crds:
+  enabled: true
+
+alertmanager:
+  enabled: false
+
+grafana:
+  enabled: true
+  defaultDashboardsTimezone: browser
+  admin:
+    existingSecret: "grafana-admin"
+    userKey: username
+    passwordKey: password
+  ingress:
+    enabled: true
+    ingressClassName: nginx-tailnet
+    annotations:
+      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
+    hosts:
+      - "grafana.tail.{{ .Values.ingress.baseDomain }}"
+    tls:
+      - secretName: grafana-tls
+        hosts:
+          - "grafana.tail.{{ .Values.ingress.baseDomain }}"
