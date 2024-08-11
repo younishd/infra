@@ -26,3 +26,22 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/clientConfig/caBundle
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jsonPointers:
+        - /webhooks/clientConfig/caBundle
+    - group: apps
+      kind: DaemonSet
+      name: kube-prometheus-stack-prometheus-node-exporter
+      jsonPointers:
+        - /spec/template/spec/containers/resources
+    - group: apps
+      kind: Deployment
+      name: kube-prometheus-stack-grafana
+      jsonPointers:
+        - /spec/template/spec/containers/resources
