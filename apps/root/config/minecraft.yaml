@@ -22,6 +22,8 @@ minecraftServer:
     port: 25575
     existingSecret: minecraft-rcon-secret
     secretKey: rcon-password
+  extraEnv:
+    USER_API_PROVIDER: mojang
 
 mcbackup:
   enabled: true
