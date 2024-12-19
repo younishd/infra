@@ -22,6 +22,7 @@ minecraftServer:
     port: 25575
     existingSecret: minecraft-rcon-secret
     secretKey: rcon-password
+  onlineMode: true
 
 mcbackup:
   enabled: true
@@ -36,6 +37,3 @@ persistence:
     Size: 64Gi
     accessModes:
       - ReadWriteOnce
-
-extraEnv:
-  ONLINE_MODE: TRUE
