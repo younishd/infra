@@ -23,7 +23,7 @@ minecraftServer:
     existingSecret: minecraft-rcon-secret
     secretKey: rcon-password
   extraEnv:
-    USER_API_PROVIDER: mojang
+    EXISTING_WHITELIST_FILE: SYNCHRONIZE
 
 mcbackup:
   enabled: true
