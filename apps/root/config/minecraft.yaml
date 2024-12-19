@@ -22,8 +22,6 @@ minecraftServer:
     port: 25575
     existingSecret: minecraft-rcon-secret
     secretKey: rcon-password
-  extraEnv:
-    EXISTING_WHITELIST_FILE: SYNCHRONIZE
 
 mcbackup:
   enabled: true
@@ -38,3 +36,6 @@ persistence:
     Size: 64Gi
     accessModes:
       - ReadWriteOnce
+
+extraEnv:
+  USER_API_PROVIDER: mojang
