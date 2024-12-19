@@ -38,4 +38,4 @@ persistence:
       - ReadWriteOnce
 
 extraEnv:
-  USER_API_PROVIDER: mojang
+  ONLINE_MODE: TRUE
