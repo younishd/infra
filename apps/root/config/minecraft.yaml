@@ -28,7 +28,6 @@ minecraftServer:
   spawnMonsters: true
   spawnNPCs: true
 
-
 mcbackup:
   enabled: true
   backupInterval: 24h
