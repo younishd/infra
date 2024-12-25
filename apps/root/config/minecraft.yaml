@@ -23,6 +23,11 @@ minecraftServer:
     existingSecret: minecraft-rcon-secret
     secretKey: rcon-password
   onlineMode: true
+  allowNether: true
+  spawnAnimals: true
+  spawnMonsters: true
+  spawnNPCs: true
+
 
 mcbackup:
   enabled: true
