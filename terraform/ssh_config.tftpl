@@ -1,0 +1,11 @@
+%{ for v in hosts ~}
+Host ${v.name}
+  HostName ${v.public_ipv4}
+
+%{ endfor ~}
+Host *
+  User root
+  StrictHostKeyChecking no
+  ExitOnForwardFailure no
+  UserKnownHostsFile /dev/null
+  ServerAliveInterval 60

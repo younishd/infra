@@ -1,0 +1,13 @@
+all:
+  children:
+    control_plane:
+      hosts:
+%{ for v in control_plane ~}
+        ${v}:
+%{ endfor ~}
+
+    data_plane:
+      hosts:
+%{ for v in data_plane ~}
+        ${v}:
+%{ endfor ~}
