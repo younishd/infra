@@ -81,3 +81,11 @@ spec:
           selfHeal: true
         syncOptions:
           - CreateNamespace=true
+      # hack to avoid argo tripping up on ephemeral helm hook
+      ignoreDifferences:
+        - group: batch
+          kind: Job
+          namespace: "ingress-nginx-{{ `{{ scope }}` }}"
+          name: "ingress-nginx-{{ `{{ scope }}` }}-admission-create"
+          jsonPointers:
+            - /
