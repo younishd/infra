@@ -3,7 +3,7 @@ minecraftServer:
   version: "1.21.7"
   type: "PAPER"
   difficulty: "hard"
-  whitelist: "neoprene,nileane"
+  whitelist: "neo_the_human,nileane"
   ops: ""
   maxPlayers: 16
   maxWorldSize: 1000000
