@@ -7,7 +7,7 @@ ingress:
 
 pms:
   storageClassName: local-path
-  configStorage: 10Gi
+  configStorage: 10Gi # has no effect
 
 extraVolumeMounts:
   - name: plex-volume
