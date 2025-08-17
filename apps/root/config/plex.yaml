@@ -4,6 +4,10 @@ ingress:
   url: "plex.{{ .Values.ingress.baseDomain }}"
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.public }}
+  tls:
+    - hosts:
+        - "plex.{{ .Values.ingress.baseDomain }}"
+      secretName: plex-tls
 
 pms:
   storageClassName: local-path
