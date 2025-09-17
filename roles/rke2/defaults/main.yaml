@@ -1,5 +1,5 @@
-rke2_version: "v1.30.0+rke2r1"
-rke2_iface: "tailscale0"
+rke2_version: "v1.33.4+rke2r1"
+rke2_iface: "eth0"
 
 base_domain: "example.com"
 cluster_domain: "example.com"
@@ -8,11 +8,12 @@ cluster_issuer_public: ""
 cluster_issuer_tailnet: ""
 
 argocd_enabled: true
-argocd_version: "6.0.*"
+argocd_version: "8.*"
 
 cluster_cidr_ipv4: ""
 service_cidr_ipv4: ""
 
+cilium_enabled: true
 cilium_version: "v1.18.0"
 cilium_cluster_id: ""
 cilium_cluster_name: ""

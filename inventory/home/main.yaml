@@ -1,0 +1,9 @@
+all:
+  children:
+    control_plane:
+      hosts:
+        frozen-river:
+        savanna-plateau:
+        pale-garden:
+
+    data_plane:

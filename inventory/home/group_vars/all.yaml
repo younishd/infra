@@ -1,0 +1,15 @@
+ansible_ssh_common_args: "-F ssh/home.config"
+
+rke2_iface: "bond0"
+
+node_labels:
+  control_plane:
+    node-role.kubernetes.io/control-plane: "true"
+  data_plane:
+    node-role.kubernetes.io/data-plane: "true"
+
+cluster_cidr_ipv4: "10.20.0.0/16"
+service_cidr_ipv4: "10.21.0.0/16"
+
+cilium_cluster_id: "20"
+cilium_cluster_name: "home"
