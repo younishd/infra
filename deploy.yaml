@@ -20,8 +20,8 @@
       ansible.builtin.apt:
         upgrade: dist
 
-- name: Configure Tailscale on all nodes
-  hosts: all
+- name: Configure Tailscale
+  hosts: tailscale
   become: true
   gather_facts: true
   any_errors_fatal: true
