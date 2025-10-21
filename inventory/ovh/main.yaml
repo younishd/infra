@@ -5,3 +5,7 @@ all:
         bubblegum:
 
     data_plane:
+
+    tailscale:
+      hosts:
+        bubblegum:

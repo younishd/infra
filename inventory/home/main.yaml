@@ -7,3 +7,7 @@ all:
         pale-garden:
 
     data_plane:
+
+    tailscale:
+      hosts:
+        frozen-river:
