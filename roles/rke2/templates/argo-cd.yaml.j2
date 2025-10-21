@@ -21,17 +21,6 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: infra
-  namespace: argo-cd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  type: git
-  url: https://github.com/younishd/infra.git
----
-apiVersion: v1
-kind: Secret
-metadata:
   name: argocd-secret
   namespace: argo-cd
 stringData:
