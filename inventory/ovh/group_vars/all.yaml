@@ -20,6 +20,8 @@ service_cidr_ipv4: "10.11.0.0/16"
 cilium_cluster_id: "10"
 cilium_cluster_name: "ovh"
 
+root_app_path: "clusters/ovh/apps/root"
+
 argocd_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   65306230333137353630306236373534643036326665653764626161316664323466613536383830

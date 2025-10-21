@@ -13,3 +13,5 @@ service_cidr_ipv4: "10.21.0.0/16"
 
 cilium_cluster_id: "20"
 cilium_cluster_name: "home"
+
+root_app_path: "clusters/ovh/apps/root"

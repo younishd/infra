@@ -39,7 +39,7 @@ spec:
   source:
     repoURL: https://github.com/younishd/infra.git
     targetRevision: HEAD
-    path: apps/root
+    path: "{{ root_app_path }}"
     helm:
       releaseName: root
       valuesObject:

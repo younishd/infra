@@ -19,3 +19,5 @@ cilium_cluster_id: ""
 cilium_cluster_name: ""
 
 node_labels: {}
+
+root_app_path: ""
