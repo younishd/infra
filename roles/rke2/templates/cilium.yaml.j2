@@ -27,7 +27,7 @@ spec:
     cluster:
       name: {{ cilium_cluster_name }}
       id: {{ cilium_cluster_id }}
-{{ if cilium_hubble_enabled }}
+{% if cilium_hubble_enabled %}
     hubble:
       enabled: true
       relay:
@@ -45,4 +45,4 @@ spec:
             - secretName: cilium-hubble-ui-tls
               hosts:
                 - "hubble.{{ cluster_domain }}"
-{{ endif }}
+{% endif %}
