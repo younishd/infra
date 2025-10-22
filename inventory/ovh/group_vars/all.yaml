@@ -5,8 +5,9 @@ rke2_iface: "tailscale0"
 base_domain: "clusterfu.co.uk"
 cluster_domain: "tail.clusterfu.co.uk"
 
-cluster_issuer_public: "letsencrypt-public-staging"
-cluster_issuer_tailnet: "letsencrypt-tailnet-staging"
+cluster_issuer:
+  public: "letsencrypt-public-staging"
+  tailnet: "letsencrypt-tailnet-staging"
 
 node_labels:
   control_plane:

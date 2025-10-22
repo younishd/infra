@@ -1,6 +1,7 @@
 ansible_ssh_common_args: "-F ssh/home.config"
 
-rke2_iface: "bond0"
+cluster_issuer:
+  internal: letsencrypt-staging
 
 node_labels:
   control_plane:
