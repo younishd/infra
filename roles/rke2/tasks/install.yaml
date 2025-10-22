@@ -2,13 +2,9 @@
   ansible.builtin.apt:
     pkg:
       - python3-pip
+      - python3-openshift
     update_cache: true
     cache_valid_time: 3600
-
-- name: Install Python dependencies
-  ansible.builtin.pip:
-    name:
-      - openshift
 
 - name: Ensure RKE2 configuration directories exist
   ansible.builtin.file:
