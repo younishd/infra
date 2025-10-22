@@ -1,0 +1,8 @@
+destination:
+  server: https://kubernetes.default.svc
+source:
+  repoURL: https://github.com/younishd/infra.git
+  targetRevision: HEAD
+ingress:
+  baseDomain: example.com
+  clusterIssuer: letsencrypt-staging
