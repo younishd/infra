@@ -26,7 +26,7 @@ cilium_cluster_name: home
 cilium_hubble_enabled: false
 cilium_operator_replicas: 2
 
-root_app_path: clusters/ovh/apps/root
+root_app_path: clusters/home/apps/root
 
 tailscale_auth_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256
