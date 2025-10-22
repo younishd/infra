@@ -50,7 +50,7 @@
     mode: "0600"
 
 - name: Install Cilium Helm chart config
-  when: inventory_hostname in groups["control_plane"]
+  when: cilium_enabled and inventory_hostname in groups["control_plane"]
   ansible.builtin.template:
     src: cilium.yaml.j2
     dest: /var/lib/rancher/rke2/server/manifests/cilium.yaml

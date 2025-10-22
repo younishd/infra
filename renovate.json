@@ -2,6 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
   "argocd": {
-    "managerFilePatterns": ["/apps/root/templates/.+\\.yaml$/"]
+    "managerFilePatterns": [
+      "/clusters/home/apps/root/templates/.+\\.yaml$/",
+      "/clusters/ovh/apps/root/templates/.+\\.yaml$/"
+    ]
   }
 }

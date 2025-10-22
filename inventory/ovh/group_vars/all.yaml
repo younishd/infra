@@ -1,10 +1,13 @@
 ansible_ssh_common_args: "-F ssh/ovh.config"
 
-base_domain: "clusterfu.co.uk"
-cluster_domain: "tail.clusterfu.co.uk"
+rke2_iface: "tailscale0"
 
-cluster_issuer_public: "letsencrypt-public-staging"
-cluster_issuer_tailnet: "letsencrypt-tailnet-staging"
+base_domain: "clusterfu.co.uk"
+cluster_domain: "tail.{{ base_domain }}"
+
+cluster_issuer:
+  public: "letsencrypt-public-staging"
+  tailnet: "letsencrypt-tailnet-staging"
 
 node_labels:
   control_plane:
@@ -17,6 +20,8 @@ service_cidr_ipv4: "10.11.0.0/16"
 
 cilium_cluster_id: "10"
 cilium_cluster_name: "ovh"
+
+root_app_path: "clusters/ovh/apps/root"
 
 argocd_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256

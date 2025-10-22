@@ -2,10 +2,12 @@ all:
   children:
     control_plane:
       hosts:
-        bubblegum:
+        frozen-river:
+        savanna-plateau:
+        pale-garden:
 
     data_plane:
 
     tailscale:
       hosts:
-        bubblegum:
+        frozen-river:
