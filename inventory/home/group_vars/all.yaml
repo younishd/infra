@@ -1,5 +1,8 @@
 ansible_ssh_common_args: "-F ssh/home.config"
 
+base_domain: lab.clusterfu.co.uk
+cluster_domain: "{{ base_domain }}"
+
 cluster_issuer:
   internal: letsencrypt-staging
 

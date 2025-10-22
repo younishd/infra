@@ -3,7 +3,7 @@ ansible_ssh_common_args: "-F ssh/ovh.config"
 rke2_iface: "tailscale0"
 
 base_domain: "clusterfu.co.uk"
-cluster_domain: "tail.clusterfu.co.uk"
+cluster_domain: "tail.{{ base_domain }}"
 
 cluster_issuer:
   public: "letsencrypt-public-staging"

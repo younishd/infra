@@ -40,9 +40,9 @@ spec:
             cert-manager.io/cluster-issuer: "{{ cluster_issuer_tailnet }}"
           className: "nginx-tailnet"
           hosts:
-            - "hubble.tail.{{ base_domain }}"
+            - "hubble.{{ cluster_domain }}"
           tls:
             - secretName: cilium-hubble-ui-tls
               hosts:
-                - "hubble.tail.{{ base_domain }}"
+                - "hubble.{{ cluster_domain }}"
 {{ endif }}
