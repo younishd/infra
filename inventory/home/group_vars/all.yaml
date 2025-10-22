@@ -24,6 +24,7 @@ cilium_version: v1.18.2
 cilium_cluster_id: "20"
 cilium_cluster_name: home
 cilium_hubble_enabled: false
+cilium_operator_replicas: 2
 
 root_app_path: clusters/ovh/apps/root
 
