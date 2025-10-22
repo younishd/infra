@@ -47,7 +47,8 @@ spec:
           targetRevision: HEAD
         ingress:
           baseDomain: "{{ base_domain }}"
-          clusterIssuer: {{ cluster_issuer | to_nice_yaml(indent=12) | indent(12) }}
+          clusterIssuer:
+            {{ cluster_issuer | to_nice_yaml(indent=12) | indent(12) }}
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
