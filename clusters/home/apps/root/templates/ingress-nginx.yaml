@@ -5,32 +5,32 @@ metadata:
   namespace: argo-cd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  spec:
-    project: default
-    source:
-      chart: ingress-nginx
-      repoURL: https://kubernetes.github.io/ingress-nginx
-      targetRevision: "4.13.*"
-      helm:
-        releaseName: "ingress-nginx"
-        valuesObject:
-          controller:
-            kind: DaemonSet
-            hostNetwork: true
-            service:
-              type: ClusterIP
-            admissionWebhooks:
-              enabled: true
-            ingressClass: "nginx"
-            nodeSelector:
-              node-role.kubernetes.io/tailscale: "true"
-    destination:
-      server: "{{ .Values.destination.server }}"
-      namespace: "ingress-nginx"
-    syncPolicy:
-      automated:
-        prune: true
-        allowEmpty: false
-        selfHeal: true
-      syncOptions:
-        - CreateNamespace=true
+spec:
+  project: default
+  source:
+    chart: ingress-nginx
+    repoURL: https://kubernetes.github.io/ingress-nginx
+    targetRevision: "4.13.*"
+    helm:
+      releaseName: "ingress-nginx"
+      valuesObject:
+        controller:
+          kind: DaemonSet
+          hostNetwork: true
+          service:
+            type: ClusterIP
+          admissionWebhooks:
+            enabled: true
+          ingressClass: "nginx"
+          nodeSelector:
+            node-role.kubernetes.io/tailscale: "true"
+  destination:
+    server: "{{ .Values.destination.server }}"
+    namespace: "ingress-nginx"
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
