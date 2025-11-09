@@ -22,3 +22,6 @@ cilium_operator_replicas: 1
 node_labels: {}
 
 root_app_path: ""
+
+ceph_enabled: false
+ceph_devices: []

@@ -1,0 +1,2 @@
+ceph_devices:
+- nvme0n1

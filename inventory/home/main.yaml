@@ -11,3 +11,9 @@ all:
     tailscale:
       hosts:
         frozen-river:
+
+    ceph:
+      hosts:
+        frozen-river:
+        savanna-plateau:
+        pale-garden:

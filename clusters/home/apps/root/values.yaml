@@ -6,3 +6,5 @@ source:
 ingress:
   baseDomain: example.com
   clusterIssuer: letsencrypt-staging
+ceph:
+  nodes: []
