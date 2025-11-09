@@ -1,0 +1,18 @@
+global:
+  domain: "argo.{{ .Values.ingress.baseDomain }}"
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: "true"
+configs:
+  params:
+    server.insecure: true
+  secret:
+    createSecret: false
+server:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
+    extraTls:
+      - hosts:
+        - "argo.{{ .Values.ingress.baseDomain }}"
+        secretName: argo-cd-tls
