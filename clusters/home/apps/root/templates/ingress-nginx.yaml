@@ -13,17 +13,8 @@ spec:
     targetRevision: "4.13.*"
     helm:
       releaseName: "ingress-nginx"
-      valuesObject:
-        controller:
-          kind: DaemonSet
-          hostNetwork: true
-          service:
-            type: ClusterIP
-          admissionWebhooks:
-            enabled: true
-          ingressClass: "nginx"
-          nodeSelector:
-            node-role.kubernetes.io/tailscale: "true"
+      values: |
+        {{- tpl (.Files.Get "config/ingress-nginx.yaml") . | nindent 8 }}
   destination:
     server: "{{ .Values.destination.server }}"
     namespace: "ingress-nginx"
