@@ -19,6 +19,9 @@ node_labels:
   ceph:
     node-role.kubernetes.io/ceph: "true"
 
+argocd_enabled: true
+argocd_version: "9.*"
+
 cluster_cidr_ipv4: 10.20.0.0/16
 service_cidr_ipv4: 10.21.0.0/16
 
