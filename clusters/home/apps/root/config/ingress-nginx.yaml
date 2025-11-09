@@ -6,5 +6,9 @@ controller:
   admissionWebhooks:
     enabled: true
   ingressClass: "nginx"
+  ingressClassResource:
+    name: nginx
+    enabled: true
+    default: true
   nodeSelector:
     node-role.kubernetes.io/tailscale: "true"
