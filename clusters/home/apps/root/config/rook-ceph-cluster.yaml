@@ -1,0 +1,35 @@
+clusterName: ceph-at-home
+
+toolbox:
+  enabled: true
+
+cephClusterSpec:
+  image: quay.io/ceph/ceph:v19
+  mon:
+    count: 3
+  mgr:
+    count: 2
+  dashboard:
+    enabled: true
+    ssl: false
+  storage:
+    useAllNodes: false
+    useAllDevices: false
+    nodes: {{ .Values.ceph.nodes | toYaml | nindent 6 }}
+
+ingress:
+  dashboard:
+    annotations:
+      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
+    host:
+      name: "ceph.{{ .Values.ingress.baseDomain }}"
+      path: /
+      pathType: Prefix
+    tls:
+      - hosts:
+          - "ceph.{{ .Values.ingress.baseDomain }}"
+        secretName: ceph-dashboard-tls
+
+cephBlockPools: []
+cephFilesystem: []
+cephObjectStore: []

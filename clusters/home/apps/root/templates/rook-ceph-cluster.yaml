@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rook-ceph-cluster
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: rook-ceph-cluster
+    repoURL: https://charts.rook.io/release
+    targetRevision: "v1.18.*"
+    helm:
+      releaseName: rook-ceph-cluster
+      values: |
+        {{- tpl (.Files.Get "config/rook-ceph-cluster.yaml") . | nindent 8 }}
+  destination:
+    server: "{{ .Values.destination.server }}"
+    namespace: rook-ceph
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
