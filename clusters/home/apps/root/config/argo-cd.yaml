@@ -11,7 +11,7 @@ server:
   ingress:
     enabled: true
     annotations:
-      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
+      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.internal }}
     extraTls:
       - hosts:
         - "argo.{{ .Values.ingress.baseDomain }}"

@@ -20,7 +20,7 @@ cephClusterSpec:
 ingress:
   dashboard:
     annotations:
-      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
+      cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.internal }}
     host:
       name: "ceph.{{ .Values.ingress.baseDomain }}"
       path: /
