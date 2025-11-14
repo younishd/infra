@@ -25,3 +25,8 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+    - group: ceph.rook.io
+      kind: CephCluster
+      jsonPointers:
+        - /spec/image
