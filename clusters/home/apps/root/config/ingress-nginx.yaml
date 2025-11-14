@@ -4,7 +4,7 @@ controller:
   service:
     type: ClusterIP
   admissionWebhooks:
-    enabled: true
+    enabled: false
   ingressClass: nginx
   ingressClassResource:
     name: nginx
