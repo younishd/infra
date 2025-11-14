@@ -50,16 +50,16 @@ spec:
           clusterIssuer:
             {{ cluster_issuer | to_nice_yaml(indent=12) | indent(12) }}
           {%- if ceph_enabled %}
-          ceph:
-            nodes:
-            {%- for host in groups["ceph"] +%}
-            - name: {{ host }}
-              devices:
-              {%- for dev in hostvars[host]["ceph_devices"] +%}
-              - name: {{ dev }}
-              {%- endfor %}
+        ceph:
+          nodes:
+          {%- for host in groups["ceph"] +%}
+          - name: {{ host }}
+            devices:
+            {%- for dev in hostvars[host]["ceph_devices"] +%}
+            - name: {{ dev }}
             {%- endfor %}
-          {%- endif +%}
+          {%- endfor %}
+        {%- endif +%}
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-cd
