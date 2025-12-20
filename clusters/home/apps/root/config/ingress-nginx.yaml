@@ -12,3 +12,5 @@ controller:
     default: true
   nodeSelector:
     node-role.kubernetes.io/tailscale: "true"
+  labels:
+    app: ingress-api
