@@ -4,7 +4,7 @@ toolbox:
   enabled: true
 
 cephClusterSpec:
-  image: quay.io/ceph/ceph:v19
+  image: quay.io/ceph/ceph:v20
   mon:
     count: 3
   mgr:
