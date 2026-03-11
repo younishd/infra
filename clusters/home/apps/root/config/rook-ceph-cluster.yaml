@@ -1,10 +1,13 @@
 clusterName: ceph-at-home
 
+cephImage:
+  repository: quay.io/ceph/ceph
+  tag: v20
+
 toolbox:
   enabled: true
 
 cephClusterSpec:
-  image: quay.io/ceph/ceph:v20
   mon:
     count: 3
   mgr:
