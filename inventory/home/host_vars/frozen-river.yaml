@@ -1,2 +1,2 @@
 ceph_devices:
-- nvme1n1
+- /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_252577800049
