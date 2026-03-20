@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: traefik
+    repoURL: https://traefik.github.io/charts
+    targetRevision: "v39.*"
+    helm:
+      releaseName: traefik
+      values: |
+        {{- tpl (.Files.Get "config/traefik.yaml") . | nindent 8 }}
+  destination:
+    server: "{{ .Values.destination.server }}"
+    namespace: traefik
+  syncPolicy:
+    automated:
+      prune: true
+      allowEmpty: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
