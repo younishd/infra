@@ -18,3 +18,8 @@ ports:
 ingressClass:
   enabled: true
   isDefaultClass: true
+
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
