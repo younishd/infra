@@ -23,3 +23,4 @@ updateStrategy:
   type: RollingUpdate
   rollingUpdate:
     maxUnavailable: 1
+    maxSurge: 0
