@@ -11,6 +11,8 @@ service:
   enabled: false
 
 ports:
+  traefik:
+    port: 8081
   web:
     port: 80
   websecure:
