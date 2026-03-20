@@ -39,6 +39,9 @@ cephBlockPools:
       failureDomain: host
       replicated:
         size: 3
+      parameters:
+        pg_num: "32"
+        pgp_num: "32"
     storageClass:
       enabled: true
       name: general
@@ -63,5 +66,5 @@ cephBlockPools:
         csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
         csi.storage.k8s.io/fstype: ext4
 
-cephFilesystem: []
-cephObjectStore: []
+cephFilesystems: []
+cephObjectStores: []
