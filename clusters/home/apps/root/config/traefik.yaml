@@ -24,3 +24,9 @@ securityContext:
   runAsGroup: 0
   runAsNonRoot: false
   runAsUser: 0
+
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 0
