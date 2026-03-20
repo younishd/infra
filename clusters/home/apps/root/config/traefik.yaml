@@ -1,9 +1,8 @@
 deployment:
   kind: DaemonSet
+  dnsPolicy: ClusterFirstWithHostNet
 
 hostNetwork: true
-
-dnsPolicy: ClusterFirstWithHostNet
 
 nodeSelector:
   node-role.kubernetes.io/tailscale: "true"
