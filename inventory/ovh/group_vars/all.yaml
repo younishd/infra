@@ -1,4 +1,4 @@
-ansible_ssh_common_args: "-F ssh/ovh.config"
+ansible_ssh_common_args: "-Fssh/ovh.config"
 
 rke2_iface: "tailscale0"
 

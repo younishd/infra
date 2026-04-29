@@ -1,4 +1,4 @@
-rke2_version: "v1.33.4+rke2r1"
+rke2_version: v1.35.4+rke2r1
 rke2_iface: "eth0"
 
 base_domain: "example.com"
@@ -7,14 +7,15 @@ cluster_domain: "example.com"
 cluster_issuer: {}
 
 argocd_enabled: true
-argocd_version: "8.*"
+argocd_version: "9.*"
 
 cluster_cidr_ipv4: ""
 service_cidr_ipv4: ""
+native_routing_cidr_ipv4: "10.0.0.0/8"
 
 cilium_enabled: true
 cilium_hubble_enabled: true
-cilium_version: "v1.18.0"
+cilium_version: v1.19.3
 cilium_cluster_id: ""
 cilium_cluster_name: ""
 cilium_operator_replicas: 1

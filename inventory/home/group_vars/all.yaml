@@ -1,7 +1,6 @@
-ansible_ssh_common_args: "-F ssh/home.config"
+ansible_ssh_common_args: "-Fssh/home.config"
 
-rke2_version: v1.34.1+rke2r1
-rke2_iface: vlan100
+rke2_iface: kube0
 
 base_domain: lab.clusterfu.co.uk
 cluster_domain: "{{ base_domain }}"
@@ -19,13 +18,10 @@ node_labels:
   ceph:
     node-role.kubernetes.io/ceph: "true"
 
-argocd_enabled: true
-argocd_version: "9.*"
-
 cluster_cidr_ipv4: 10.20.0.0/16
 service_cidr_ipv4: 10.21.0.0/16
 
-cilium_version: v1.18.2
+cilium_version: v1.19.3
 cilium_cluster_id: "20"
 cilium_cluster_name: home
 cilium_hubble_enabled: false
