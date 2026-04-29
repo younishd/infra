@@ -33,7 +33,7 @@ Same thing, but skip Tailscale step:
 ansible-playbook deploy.yaml --skip-tags tailscale
 ```
 
-Uninstall cluster ⚠️:
+⚠️ **Destroy** cluster:
 
 ```sh
 ansible all -m shell -a "sudo rke2-uninstall.sh"
@@ -73,9 +73,11 @@ network:
 
 ## Applications
 
-### Ceph
+### Rook/Ceph
 
-Ceph really likes clean disks for its OSDs. This is how we flatten the disks before creating the Ceph cluster:
+⚠️ **Destroy and recreate** your Ceph cluster from scratch:
+
+1. Flatten the OSD disks:
 
 ```sh
 sudo wipefs -a        /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
@@ -83,6 +85,14 @@ sudo sgdisk --zap-all /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
 sudo blkdiscard       /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
 sudo partprobe        /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
 ```
+
+2. Purge this directory on each host:
+
+```sh
+sudo rm -rf /var/lib/rook
+```
+
+3. Redeploy Rook operator + resources
 
 ### Plex
 
