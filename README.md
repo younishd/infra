@@ -49,7 +49,40 @@ ssh -Fssh/ovh.config bubblegum -- sudo cat /etc/rancher/rke2/rke2.yaml >~/.kube/
 
 Replace `127.0.0.1` with Tailscale Magic DNS name (e.g., `bubblegum`).
 
+### Cilium cluster mesh
+
+Establish routing between nodes:
+
+On the node connected to the tailnet (i.e., `frozen-river`)
+we advertise the node CIDR using a [subnet router](https://tailscale.com/docs/features/subnet-routers):
+
+```sh
+sudo tailscale set --advertise-routes=172.27.100.0/24
+sudo tailscale up --snat-subnet-routes=false
+```
+
+On the remaining nodes (i.e., `savanna-plateau` and `pale-garden`) we add static back routes:
+
+```yaml
+network:
+  …
+      routes:
+        - to: 100.64.0.0/10
+          via: 172.27.100.10
+```
+
 ## Applications
+
+### Ceph
+
+Ceph really likes clean disks for its OSDs. This is how we flatten the disks before creating the Ceph cluster:
+
+```sh
+sudo wipefs -a        /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
+sudo sgdisk --zap-all /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
+sudo blkdiscard       /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
+sudo partprobe        /dev/disk/by-id/nvme-WD_Red_SN700_2000GB_000000000000
+```
 
 ### Plex
 
