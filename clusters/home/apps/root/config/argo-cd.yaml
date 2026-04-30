@@ -7,6 +7,17 @@ configs:
     server.insecure: true
   secret:
     createSecret: false
+  cm:
+    resource.customizations.health.networking.k8s.io_Ingress: |
+      hs = {}
+      if obj.spec ~= nil and obj.spec.rules ~= nil and #obj.spec.rules > 0 then
+        hs.status = "Healthy"
+        hs.message = "Ingress is healthy"
+      else
+        hs.status = "Degraded"
+        hs.message = "Ingress has no rules defined"
+      end
+      return hs
 server:
   ingress:
     enabled: true
