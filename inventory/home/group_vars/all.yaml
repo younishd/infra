@@ -21,7 +21,6 @@ node_labels:
 cluster_cidr_ipv4: 10.20.0.0/16
 service_cidr_ipv4: 10.21.0.0/16
 
-cilium_version: v1.19.3
 cilium_cluster_id: "20"
 cilium_cluster_name: home
 cilium_hubble_enabled: false
