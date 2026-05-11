@@ -1,0 +1,54 @@
+minecraftServer:
+  eula: "TRUE"
+  version: "26.1.2"
+  type: "PAPER"
+  difficulty: "hard"
+  whitelist: "neo_the_human,nileane"
+  ops: ""
+  maxPlayers: 8
+  maxWorldSize: 1000000
+  spawnProtection: 0
+  viewDistance: 16
+  levelSeed: "192421863"
+  gameMode: survival
+  motd: '\u00a7bDivision\u00a7a\u00f7\u00a7eIsland'
+  memory: 4096M
+  overrideServerProperties: true
+  serviceType: NodePort
+  nodePort: 30000
+  rcon:
+    enabled: true
+    withGeneratedPassword: false
+    port: 25575
+    existingSecret: minecraft-rcon-secret
+    secretKey: rcon-password
+  onlineMode: true
+  allowNether: true
+  spawnAnimals: true
+  spawnMonsters: true
+  spawnNPCs: true
+
+mcbackup:
+  enabled: true
+  backupInterval: 24h
+  pruneBackupsDays: 7
+  backupMethod: tar
+  destDir: /backups
+
+persistence:
+  dataDir:
+    enabled: true
+    existingClaim: minecraft
+
+resources:
+  requests:
+    memory: 4Gi
+    cpu: 1000m
+  limits:
+    memory: 6Gi
+
+nodeSelector:
+  node-role.kubernetes.io/minecraft: "true"
+
+serviceAnnotations:
+  service.cilium.io/global: "true"
