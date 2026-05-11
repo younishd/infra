@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft
+  namespace: minecraft
+  annotations:
+    service.cilium.io/global: "true"
+    service.cilium.io/affinity: remote
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: minecraft
+  ports:
+    - name: minecraft
+      port: 25565
+      targetPort: 25565
+      nodePort: 30000
+      protocol: TCP
