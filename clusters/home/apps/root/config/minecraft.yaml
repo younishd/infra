@@ -1,6 +1,6 @@
 minecraftServer:
   eula: "TRUE"
-  version: "26.1.2"
+  version: "26.2"
   type: "PAPER"
   difficulty: "hard"
   whitelist: "neo_the_human,nileane"
