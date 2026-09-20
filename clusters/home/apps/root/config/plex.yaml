@@ -1,0 +1,15 @@
+pms:
+  configExistingClaim: plex-config
+
+extraVolumeMounts:
+  - name: plex-volume
+    mountPath: /data
+
+extraVolumes:
+  - name: plex-volume
+    persistentVolumeClaim:
+      claimName: plex
+
+service:
+  type: NodePort
+  nodePort: 32000

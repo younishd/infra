@@ -7,10 +7,17 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: "{{ .Values.source.repoURL }}"
-    targetRevision: "{{ .Values.source.targetRevision }}"
-    path: clusters/home/apps/plex
+  sources:
+    - repoURL: "{{ .Values.source.repoURL }}"
+      targetRevision: "{{ .Values.source.targetRevision }}"
+      path: clusters/home/apps/plex
+    - chart: plex-media-server
+      repoURL: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
+      targetRevision: "1.*"
+      helm:
+        releaseName: plex
+        values: |
+          {{- tpl (.Files.Get "config/plex.yaml") . | nindent 10 }}
   destination:
     server: "{{ .Values.destination.server }}"
     namespace: plex
