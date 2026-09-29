@@ -1,0 +1,25 @@
+deployment:
+  replicas: 2
+
+ingressClass:
+  enabled: true
+  name: traefik-tailnet
+  isDefaultClass: true
+
+providers:
+  kubernetesIngress:
+    ingressClass: traefik-tailnet
+    publishedService:
+      enabled: true
+  kubernetesCRD:
+    ingressClass: traefik-tailnet
+
+service:
+  type: LoadBalancer
+  labels:
+    lb-pool: tailnet
+  annotations:
+    lbipam.cilium.io/ips: "172.28.100.1"
+  spec:
+    externalTrafficPolicy: Local
+    allocateLoadBalancerNodePorts: false

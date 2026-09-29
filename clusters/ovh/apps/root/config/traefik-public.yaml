@@ -1,0 +1,25 @@
+deployment:
+  replicas: 2
+
+ingressClass:
+  enabled: true
+  name: traefik-public
+  isDefaultClass: false
+
+providers:
+  kubernetesIngress:
+    ingressClass: traefik-public
+    publishedService:
+      enabled: true
+  kubernetesCRD:
+    ingressClass: traefik-public
+
+service:
+  type: LoadBalancer
+  labels:
+    lb-pool: public
+  annotations:
+    lbipam.cilium.io/ips: "51.91.62.140"
+  spec:
+    externalTrafficPolicy: Local
+    allocateLoadBalancerNodePorts: false
