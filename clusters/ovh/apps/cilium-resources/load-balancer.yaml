@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: tailnet
+spec:
+  blocks:
+  - cidr: 172.28.100.0/28
+  serviceSelector:
+    matchLabels:
+      lb-pool: tailnet
+---
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: public
+spec:
+  blocks:
+  - cidr: 51.91.62.140/32
+  serviceSelector:
+    matchLabels:
+      lb-pool: public
