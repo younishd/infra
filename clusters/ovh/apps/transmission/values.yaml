@@ -1,6 +1,6 @@
 ingress:
   enabled: true
-  ingressClassName: nginx
+  ingressClassName: "-"
   hostname: "transmission.local"
   annotations: {}
 

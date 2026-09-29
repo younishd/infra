@@ -13,7 +13,7 @@ grafana:
     passwordKey: password
   ingress:
     enabled: true
-    ingressClassName: nginx-tailnet
+    ingressClassName: traefik-tailnet
     annotations:
       cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
     hosts:

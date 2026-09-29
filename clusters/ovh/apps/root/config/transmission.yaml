@@ -1,6 +1,6 @@
 ingress:
   enabled: true
-  ingressClassName: nginx-tailnet
+  ingressClassName: traefik-tailnet
   hostname: "tx.tail.{{ .Values.ingress.baseDomain }}"
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
