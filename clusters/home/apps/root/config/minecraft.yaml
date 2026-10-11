@@ -14,8 +14,7 @@ minecraftServer:
   motd: '\u00a7bDivision\u00a7a\u00f7\u00a7eIsland'
   memory: 4096M
   overrideServerProperties: true
-  serviceType: NodePort
-  nodePort: 30000
+  serviceType: LoadBalancer
   rcon:
     enabled: true
     withGeneratedPassword: false
@@ -52,3 +51,4 @@ nodeSelector:
 
 serviceAnnotations:
   service.cilium.io/global: "true"
+  lbipam.cilium.io/ips: 172.27.100.241
