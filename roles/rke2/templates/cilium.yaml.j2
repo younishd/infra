@@ -43,8 +43,10 @@ spec:
         clusters:
 {% for peer in cilium_cluster_mesh_peers %}
         - name: {{ peer.name }}
-          address: {{ peer.address }}
+          address: {{ peer.name }}.mesh.cilium.io
           port: {{ peer.port | default(2379) }}
+          ips:
+          - {{ peer.address }}
 {% endfor %}
       apiserver:
         service:
