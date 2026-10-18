@@ -3,11 +3,14 @@ server: https://{{ rke2_master_ipv4 }}:9345
 token: {{ rke2_master_token }}
 {% endif %}
 tls-san:
-  - {{ cluster_domain }}
+- {{ cluster_domain }}
 cni: none
 node-ip: "{{ rke2_node_ipv4 }}"
 node-external-ip: "{{ rke2_node_ipv4 }}"
-disable: rke2-ingress-nginx
+disable:
+- rke2-ingress-nginx
+- rke2-traefik
+- rke2-traefik-crd
 disable-kube-proxy: true
 kube-controller-manager-arg: "--controllers=*,-nodeipam"
 {% if "control_plane" in group_names %}
