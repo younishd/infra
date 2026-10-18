@@ -33,6 +33,12 @@ Same thing, but skip Tailscale step:
 ansible-playbook deploy.yaml --skip-tags tailscale
 ```
 
+Same thing, but also skip Argo CD redeployment:
+
+```sh
+ansible-playbook deploy.yaml -e '{argocd_enabled: false}'
+```
+
 ⚠️ **Destroy** cluster:
 
 ```sh
@@ -67,8 +73,8 @@ On the remaining nodes (i.e., `savanna-plateau` and `pale-garden`) we add static
 network:
   …
       routes:
-        - to: 100.64.0.0/10
-          via: 172.27.100.10
+      - to: 100.64.0.0/10
+        via: 172.27.100.10
 ```
 
 ## Applications

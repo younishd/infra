@@ -2,8 +2,8 @@ ansible_ssh_common_args: "-Fssh/home.config"
 
 rke2_iface: kube0
 
-base_domain: lab.clusterfu.co.uk
-cluster_domain: "{{ base_domain }}"
+base_domain: clusterfu.co.uk
+cluster_domain: "lab.{{ base_domain }}"
 
 cluster_issuer:
   internal: letsencrypt-staging
@@ -23,8 +23,13 @@ service_cidr_ipv4: 10.21.0.0/16
 
 cilium_cluster_id: "20"
 cilium_cluster_name: home
-cilium_hubble_enabled: false
+cilium_hubble_enabled: true
 cilium_operator_replicas: 2
+cilium_cluster_mesh_ip: "172.27.100.242"
+cilium_cluster_mesh_peers:
+- name: ovh
+  address: "172.28.100.2"
+  port: 2379
 
 root_app_path: clusters/home/apps/root
 

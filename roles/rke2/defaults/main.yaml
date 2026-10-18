@@ -1,4 +1,4 @@
-rke2_version: v1.35.4+rke2r1
+rke2_version: v1.36.5+rke2r1
 rke2_iface: "eth0"
 
 base_domain: "example.com"
@@ -15,10 +15,12 @@ native_routing_cidr_ipv4: "10.0.0.0/8"
 
 cilium_enabled: true
 cilium_hubble_enabled: true
-cilium_version: v1.19.3
+cilium_version: v1.20.3
 cilium_cluster_id: ""
 cilium_cluster_name: ""
 cilium_operator_replicas: 1
+cilium_cluster_mesh_ip: ""
+cilium_cluster_mesh_peers: []
 
 node_labels: {}
 

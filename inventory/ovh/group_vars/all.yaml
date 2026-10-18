@@ -1,13 +1,13 @@
 ansible_ssh_common_args: "-Fssh/ovh.config"
 
-rke2_iface: "tailscale0"
+rke2_iface: tailscale0
 
-base_domain: "clusterfu.co.uk"
+base_domain: clusterfu.co.uk
 cluster_domain: "tail.{{ base_domain }}"
 
 cluster_issuer:
-  public: "letsencrypt-public-staging"
-  tailnet: "letsencrypt-tailnet-staging"
+  public: letsencrypt-public-staging
+  tailnet: letsencrypt-tailnet-staging
 
 node_labels:
   control_plane:
@@ -15,14 +15,19 @@ node_labels:
   data_plane:
     node-role.kubernetes.io/data-plane: "true"
 
-cluster_cidr_ipv4: "10.10.0.0/16"
-service_cidr_ipv4: "10.11.0.0/16"
+cluster_cidr_ipv4: 10.10.0.0/16
+service_cidr_ipv4: 10.11.0.0/16
 
 cilium_cluster_id: "10"
 cilium_cluster_name: "ovh"
-cilium_hubble_enabled: false
+cilium_hubble_enabled: true
+cilium_cluster_mesh_ip: "172.28.100.2"
+cilium_cluster_mesh_peers:
+- name: home
+  address: "172.27.100.242"
+  port: 2379
 
-root_app_path: "clusters/ovh/apps/root"
+root_app_path: clusters/ovh/apps/root
 
 argocd_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
