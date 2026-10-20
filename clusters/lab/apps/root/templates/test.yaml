@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: "{{ .Values.source.repoURL }}"
     targetRevision: "{{ .Values.source.targetRevision }}"
-    path: "clusters/{{ .Values.destination.name }}/apps/root/templates/test.yaml"
+    path: "clusters/{{ .Values.destination.name }}/apps/test"
   destination:
     name: "{{ .Values.destination.name }}"
     namespace: default
