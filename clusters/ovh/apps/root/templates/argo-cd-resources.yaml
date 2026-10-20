@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: "{{ .Values.source.repoURL }}"
     targetRevision: "{{ .Values.source.targetRevision }}"
-    path: apps/argo-cd-resources
+    path: clusters/ovh/apps/argo-cd-resources
   destination:
     server: "{{ .Values.destination.server }}"
     namespace: argo-cd
