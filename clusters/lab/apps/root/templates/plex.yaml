@@ -10,7 +10,7 @@ spec:
   sources:
   - repoURL: "{{ .Values.source.repoURL }}"
     targetRevision: "{{ .Values.source.targetRevision }}"
-    path: clusters/home/apps/plex
+    path: "clusters/{{ .Values.destination.name }}/apps/plex"
   - chart: plex-media-server
     repoURL: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
     targetRevision: "1.*"
