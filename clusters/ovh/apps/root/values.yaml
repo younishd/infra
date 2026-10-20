@@ -1,5 +1,5 @@
 destination:
-  server: https://kubernetes.default.svc
+  name: ovh
 source:
   repoURL: https://github.com/younishd/infra.git
   targetRevision: HEAD
