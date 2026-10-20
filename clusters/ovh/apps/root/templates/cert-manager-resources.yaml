@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-resources
+  name: "{{ .Values.destination.name }}-cert-manager-resources"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io

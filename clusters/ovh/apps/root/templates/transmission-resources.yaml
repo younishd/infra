@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: transmission-resources
+  name: "{{ .Values.destination.name }}-transmission-resources"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io

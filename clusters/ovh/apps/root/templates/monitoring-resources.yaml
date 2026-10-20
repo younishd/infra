@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring-resources
+  name: "{{ .Values.destination.name }}-monitoring-resources"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io

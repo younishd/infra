@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik-public
+  name: "{{ .Values.destination.name }}-traefik-public"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -30,7 +30,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik-tailnet
+  name: "{{ .Values.destination.name }}-traefik-tailnet"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io

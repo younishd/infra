@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: plex-resources
+  name: "{{ .Values.destination.name }}-plex-resources"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io

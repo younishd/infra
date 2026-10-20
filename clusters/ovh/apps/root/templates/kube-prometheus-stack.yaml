@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: "{{ .Values.destination.name }}-kube-prometheus-stack"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io

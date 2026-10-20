@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rook-ceph
+  name: "{{ .Values.destination.name }}-rook-ceph"
   namespace: argo-cd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
