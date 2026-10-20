@@ -4,7 +4,7 @@ metadata:
   name: argo-cd
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -28,11 +28,11 @@ spec:
             enabled: true
             ingressClassName: traefik-tailnet
             annotations:
-              cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
+              cert-manager.io/cluster-issuer: "{{ .Values.ingress.clusterIssuer.tailnet }}"
             extraTls:
-              - hosts:
-                - "argo.tail.{{ .Values.ingress.baseDomain }}"
-                secretName: argo-cd-tls
+            - hosts:
+              - "argo.tail.{{ .Values.ingress.baseDomain }}"
+              secretName: argo-cd-tls
   destination:
     server: "{{ .Values.destination.server }}"
     namespace: argo-cd
@@ -40,7 +40,7 @@ spec:
     automated:
       prune: true
       allowEmpty: false
-      selfHeal: true
+      selfHeal: false
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+    - CreateNamespace=true
+    - ServerSideApply=true
