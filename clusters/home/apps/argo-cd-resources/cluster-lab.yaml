@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cluster-lab
+  namespace: argo-cd
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+    env: lab
+data:
+  name: bGFi
+  server: aHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3Zj
