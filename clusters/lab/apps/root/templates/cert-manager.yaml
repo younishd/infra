@@ -4,19 +4,22 @@ metadata:
   name: cert-manager
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    chart: cert-manager
+  sources:
+  - chart: cert-manager
     repoURL: https://charts.jetstack.io
     targetRevision: "1.18.*"
     helm:
       releaseName: cert-manager
       values: |
         {{- tpl (.Files.Get "config/cert-manager.yaml") . | nindent 8 }}
+  - repoURL: "{{ .Values.source.repoURL }}"
+    targetRevision: "{{ .Values.source.targetRevision }}"
+    path: "clusters/{{ .Values.destination.name }}/apps/cert-manager-resources"
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: cert-manager
   syncPolicy:
     automated:
@@ -24,4 +27,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

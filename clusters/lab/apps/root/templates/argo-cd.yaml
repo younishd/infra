@@ -4,19 +4,22 @@ metadata:
   name: argo-cd
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    chart: argo-cd
+  sources:
+  - chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: "9.*"
     helm:
       releaseName: argo-cd
       values: |
         {{- tpl (.Files.Get "config/argo-cd.yaml") . | nindent 8 }}
+  - repoURL: "{{ .Values.source.repoURL }}"
+    targetRevision: "{{ .Values.source.targetRevision }}"
+    path: "clusters/{{ .Values.destination.name }}/apps/argo-cd-resources"
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: argo-cd
   syncPolicy:
     automated:
@@ -24,5 +27,5 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+    - CreateNamespace=true
+    - ServerSideApply=true

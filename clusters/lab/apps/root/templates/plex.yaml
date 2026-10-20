@@ -4,22 +4,22 @@ metadata:
   name: plex
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
-    - repoURL: "{{ .Values.source.repoURL }}"
-      targetRevision: "{{ .Values.source.targetRevision }}"
-      path: clusters/home/apps/plex
-    - chart: plex-media-server
-      repoURL: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
-      targetRevision: "1.*"
-      helm:
-        releaseName: plex
-        values: |
-          {{- tpl (.Files.Get "config/plex.yaml") . | nindent 10 }}
+  - repoURL: "{{ .Values.source.repoURL }}"
+    targetRevision: "{{ .Values.source.targetRevision }}"
+    path: clusters/home/apps/plex
+  - chart: plex-media-server
+    repoURL: https://raw.githubusercontent.com/plexinc/pms-docker/gh-pages
+    targetRevision: "1.*"
+    helm:
+      releaseName: plex
+      values: |
+        {{- tpl (.Files.Get "config/plex.yaml") . | nindent 8 }}
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: plex
   syncPolicy:
     automated:
@@ -27,4 +27,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

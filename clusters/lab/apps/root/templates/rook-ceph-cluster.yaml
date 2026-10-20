@@ -4,7 +4,7 @@ metadata:
   name: rook-ceph-cluster
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -16,7 +16,7 @@ spec:
       values: |
         {{- tpl (.Files.Get "config/rook-ceph-cluster.yaml") . | nindent 8 }}
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: rook-ceph
   syncPolicy:
     automated:
@@ -24,9 +24,9 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
   ignoreDifferences:
-    - group: ceph.rook.io
-      kind: CephCluster
-      jsonPointers:
-        - /spec/image
+  - group: ceph.rook.io
+    kind: CephCluster
+    jsonPointers:
+    - /spec/image
