@@ -4,15 +4,15 @@ metadata:
   name: cert-manager-resources
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: "{{ .Values.source.repoURL }}"
     targetRevision: "{{ .Values.source.targetRevision }}"
-    path: apps/cert-manager-resources
+    path: "clusters/{{ .Values.destination.name }}/apps/cert-manager-resources"
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: cert-manager
   syncPolicy:
     automated:
@@ -20,4 +20,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

@@ -5,7 +5,7 @@ metadata:
   name: traefik-public
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -17,7 +17,7 @@ spec:
       values: |
         {{- tpl (.Files.Get "config/traefik-public.yaml") . | nindent 8 }}
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: traefik
   syncPolicy:
     automated:
@@ -25,7 +25,7 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -33,7 +33,7 @@ metadata:
   name: traefik-tailnet
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -46,7 +46,7 @@ spec:
       values: |
         {{- tpl (.Files.Get "config/traefik-tailnet.yaml") . | nindent 8 }}
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: traefik
   syncPolicy:
     automated:
@@ -54,4 +54,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

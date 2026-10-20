@@ -4,7 +4,7 @@ metadata:
   name: local-path-provisioner
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -20,7 +20,7 @@ spec:
         nodeSelector:
           node-role.kubernetes.io/storage: "true"
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: local-path-storage
   syncPolicy:
     automated:
@@ -28,4 +28,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

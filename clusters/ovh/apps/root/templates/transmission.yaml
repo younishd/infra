@@ -4,19 +4,19 @@ metadata:
   name: transmission
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: "{{ .Values.source.repoURL }}"
     targetRevision: "{{ .Values.source.targetRevision }}"
-    path: apps/transmission
+    path: "clusters/{{ .Values.destination.name }}/apps/transmission"
     helm:
       releaseName: transmission
       values: |
         {{- tpl (.Files.Get "config/transmission.yaml") . | nindent 8 }}
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: plex
   syncPolicy:
     automated:
@@ -24,4 +24,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

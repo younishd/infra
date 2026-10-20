@@ -4,7 +4,7 @@ metadata:
   name: kube-prometheus-stack
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -16,7 +16,7 @@ spec:
       values: |
         {{- tpl (.Files.Get "config/kube-prometheus-stack.yaml") . | nindent 8 }}
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: monitoring
   syncPolicy:
     automated:
@@ -24,24 +24,24 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+    - CreateNamespace=true
+    - ServerSideApply=true
   ignoreDifferences:
-    - group: admissionregistration.k8s.io
-      kind: MutatingWebhookConfiguration
-      jqPathExpressions:
-        - .webhooks[].clientConfig.caBundle
-    - group: admissionregistration.k8s.io
-      kind: ValidatingWebhookConfiguration
-      jqPathExpressions:
-        - .webhooks[].clientConfig.caBundle
-    - group: apps
-      kind: DaemonSet
-      name: kube-prometheus-stack-prometheus-node-exporter
-      jqPathExpressions:
-        - .spec.template.spec.containers[].resources
-    - group: apps
-      kind: Deployment
-      name: kube-prometheus-stack-grafana
-      jqPathExpressions:
-        - .spec.template.spec.containers[].resources
+  - group: admissionregistration.k8s.io
+    kind: MutatingWebhookConfiguration
+    jqPathExpressions:
+    - .webhooks[].clientConfig.caBundle
+  - group: admissionregistration.k8s.io
+    kind: ValidatingWebhookConfiguration
+    jqPathExpressions:
+    - .webhooks[].clientConfig.caBundle
+  - group: apps
+    kind: DaemonSet
+    name: kube-prometheus-stack-prometheus-node-exporter
+    jqPathExpressions:
+    - .spec.template.spec.containers[].resources
+  - group: apps
+    kind: Deployment
+    name: kube-prometheus-stack-grafana
+    jqPathExpressions:
+    - .spec.template.spec.containers[].resources

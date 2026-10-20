@@ -4,7 +4,7 @@ metadata:
   name: cert-manager
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
@@ -16,7 +16,7 @@ spec:
       valuesObject:
         installCRDs: true
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: cert-manager
   syncPolicy:
     automated:
@@ -24,4 +24,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

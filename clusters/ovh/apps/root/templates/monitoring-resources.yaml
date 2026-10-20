@@ -4,15 +4,15 @@ metadata:
   name: monitoring-resources
   namespace: argo-cd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: "{{ .Values.source.repoURL }}"
     targetRevision: "{{ .Values.source.targetRevision }}"
-    path: apps/monitoring-resources
+    path: "clusters/{{ .Values.destination.name }}/apps/monitoring-resources"
   destination:
-    server: "{{ .Values.destination.server }}"
+    name: "{{ .Values.destination.name }}"
     namespace: monitoring
   syncPolicy:
     automated:
@@ -20,4 +20,4 @@ spec:
       allowEmpty: false
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
