@@ -6,6 +6,8 @@ metadata:
     lbipam.cilium.io/ips: "51.91.62.140"
     lbipam.cilium.io/sharing-key: ovh-public
     lbipam.cilium.io/sharing-cross-namespace: traefik
+  labels:
+    lb-pool: public
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Cluster
