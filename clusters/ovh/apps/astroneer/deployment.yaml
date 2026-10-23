@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: astroneer
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: astroneer
+  template:
+    metadata:
+      labels:
+        app: astroneer
+    spec:
+      terminationGracePeriodSeconds: 120
+      containers:
+      - name: astroneer
+        image: ghcr.io/birdhimself/astroneer-server:latest
+        stdin: true
+        tty: true
+        ports:
+        - name: game
+          containerPort: 7777
+          protocol: UDP
+        volumeMounts:
+        - name: saved
+          mountPath: /astrotux/AstroneerServer/Astro/Saved
+        resources:
+          requests: { cpu: "1", memory: 4Gi }
+          limits: { memory: 8Gi }
+      volumes:
+      - name: saved
+        persistentVolumeClaim:
+          claimName: astroneer-saved

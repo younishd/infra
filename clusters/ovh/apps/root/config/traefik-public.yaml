@@ -20,6 +20,8 @@ service:
     lb-pool: public
   annotations:
     lbipam.cilium.io/ips: "51.91.62.140"
+    lbipam.cilium.io/sharing-key: ovh-public
+    lbipam.cilium.io/sharing-cross-namespace: astroneer
   spec:
-    externalTrafficPolicy: Local
+    externalTrafficPolicy: Cluster
     allocateLoadBalancerNodePorts: false
