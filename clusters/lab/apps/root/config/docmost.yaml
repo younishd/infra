@@ -2,8 +2,8 @@ docmost:
   appUrl: 'https://kb.clusterfu.co.uk'
   existingSecret: docmost-app-secret
   extraEnv:
-  - name: DATABASE_URL
-    value: "postgresql://docmost:$(DATABASE_PASSWORD)@docmost-db.docmost.svc.cluster.local:5432/docmost?sslmode=require"
+  - name: PGSSLMODE
+    value: require
 
 postgresql:
   enabled: false
