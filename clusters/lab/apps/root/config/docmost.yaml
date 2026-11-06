@@ -1,9 +1,6 @@
 docmost:
   appUrl: 'https://kb.clusterfu.co.uk'
   existingSecret: docmost-app-secret
-  extraEnv:
-  - name: PGSSLMODE
-    value: require
 
 postgresql:
   enabled: false
@@ -13,7 +10,8 @@ database:
   external:
     host: docmost-db.docmost.svc.cluster.local
     port: 5432
-    name: docmost
+    # stupid hack to enable ssl
+    name: "docmost?sslmode=require"
     username: docmost
     existingSecret: docmost.docmost-db.credentials.postgresql.acid.zalan.do
     existingSecretPasswordKey: password
