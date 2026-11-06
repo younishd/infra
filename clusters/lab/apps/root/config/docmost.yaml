@@ -1,0 +1,52 @@
+docmost:
+  appUrl: 'https://kb.clusterfu.co.uk'
+  existingSecret: docmost-app-secret
+
+postgresql:
+  enabled: false
+
+database:
+  mode: external
+  external:
+    host: docmost-db.docmost.svc.cluster.local
+    port: 5432
+    name: docmost
+    username: docmost
+    existingSecret: docmost.docmost-db.credentials.postgresql.acid.zalan.do
+    existingSecretPasswordKey: password
+
+redis:
+  enabled: true
+  auth:
+    enabled: true
+  standalone:
+    persistence:
+      enabled: true
+      size: 1Gi
+
+storage:
+  mode: s3
+  local:
+    enabled: false
+  s3:
+    region: de-ka-1
+    bucket: docmost-uploads
+    endpoint: http://rook-ceph-rgw-ceph-objectstore.rook-ceph.svc
+    forcePathStyle: true
+    existingSecret: docmost-uploads
+    existingSecretAccessKeyKey: AWS_ACCESS_KEY_ID
+    existingSecretSecretKeyKey: AWS_SECRET_ACCESS_KEY
+
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 200m
+  limits:
+    memory: 1Gi
+
+ingress:
+  enabled: false
+
+service:
+  annotations:
+    service.cilium.io/global: "true"

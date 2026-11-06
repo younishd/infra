@@ -1,0 +1,17 @@
+apiVersion: acid.zalan.do/v1
+kind: postgresql
+metadata:
+  name: docmost-db
+  namespace: docmost
+spec:
+  teamId: docmost
+  numberOfInstances: 1
+  postgresql:
+    version: "18"
+  volume:
+    size: 10Gi
+    storageClass: general
+  users:
+    docmost: []
+  databases:
+    docmost: docmost

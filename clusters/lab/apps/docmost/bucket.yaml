@@ -1,0 +1,8 @@
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: docmost-uploads
+  namespace: docmost
+spec:
+  bucketName: docmost-uploads
+  storageClassName: ceph-bucket
