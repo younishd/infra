@@ -18,7 +18,7 @@ cephClusterSpec:
   storage:
     useAllNodes: false
     useAllDevices: false
-    nodes: "{{ .Values.ceph.nodes | toYaml | nindent 6 }}"
+    nodes: {{ .Values.ceph.nodes | toJson }}
 
 ingress:
   dashboard:
