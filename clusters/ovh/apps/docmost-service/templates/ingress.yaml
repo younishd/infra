@@ -6,7 +6,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "{{ .Values.ingress.clusterIssuer.public }}"
 spec:
-  ingressClassName: traefik
+  ingressClassName: traefik-public
   rules:
   - host: "kb.{{ .Values.ingress.baseDomain }}"
     http:
