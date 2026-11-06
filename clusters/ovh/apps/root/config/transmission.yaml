@@ -3,7 +3,7 @@ ingress:
   ingressClassName: traefik-tailnet
   hostname: "tx.tail.{{ .Values.ingress.baseDomain }}"
   annotations:
-    cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer.tailnet }}
+    cert-manager.io/cluster-issuer: "{{ .Values.ingress.clusterIssuer.tailnet }}"
 
 persistence:
   enabled: true
