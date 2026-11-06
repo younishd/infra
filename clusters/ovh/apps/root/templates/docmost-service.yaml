@@ -11,6 +11,12 @@ spec:
     repoURL: "{{ .Values.source.repoURL }}"
     targetRevision: "{{ .Values.source.targetRevision }}"
     path: "clusters/{{ .Values.destination.name }}/apps/docmost-service"
+    helm:
+      valuesObject:
+        ingress:
+          baseDomain: "{{ .Values.ingress.baseDomain }}"
+          clusterIssuer:
+            public: "{{ .Values.ingress.clusterIssuer.public }}"
   destination:
     name: "{{ .Values.destination.name }}"
     namespace: docmost
