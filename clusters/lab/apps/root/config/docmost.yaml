@@ -21,7 +21,7 @@ database:
 redis:
   enabled: true
   auth:
-    enabled: true
+    enabled: false
   standalone:
     persistence:
       enabled: true
