@@ -106,4 +106,4 @@ cephObjectStores:
     - hosts: [ "s3.{{ .Values.ingress.baseDomain }}" ]
       secretName: ceph-rgw-tls
 
-cephFilesystems: []
+cephFileSystems: []
