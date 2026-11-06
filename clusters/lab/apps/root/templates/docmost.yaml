@@ -13,7 +13,7 @@ spec:
     path: "clusters/{{ .Values.destination.name }}/apps/docmost"
   - chart: docmost
     repoURL: https://repo.helmforge.dev
-    targetRevision:
+    targetRevision: "1.*"
     helm:
       releaseName: docmost
       values: |
