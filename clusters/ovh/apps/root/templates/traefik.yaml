@@ -11,7 +11,7 @@ spec:
   source:
     chart: traefik
     repoURL: https://traefik.github.io/charts
-    targetRevision: "v41.*"
+    targetRevision: "42.*"
     helm:
       releaseName: traefik-public
       values: |
@@ -39,7 +39,7 @@ spec:
   source:
     chart: traefik
     repoURL: https://traefik.github.io/charts
-    targetRevision: "v41.*"
+    targetRevision: "42.*"
     helm:
       releaseName: traefik-tailnet
       skipCrds: true
