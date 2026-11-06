@@ -5,6 +5,7 @@ source:
   targetRevision: HEAD
 ingress:
   baseDomain: example.com
-  clusterIssuer: letsencrypt-staging
+  clusterIssuer:
+    internal: letsencrypt-staging
 ceph:
   nodes: []
