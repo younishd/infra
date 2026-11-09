@@ -23,6 +23,8 @@ spec:
         - ggml-org/gpt-oss-120b-GGUF
         - --threads
         - "6"
+        - --threads-batch
+        - "14"
         - --load-mode
         - none
         - --no-webui
