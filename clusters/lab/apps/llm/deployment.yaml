@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-server
+  namespace: llm
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: { app: llama-server }
+  template:
+    metadata:
+      labels: { app: llama-server }
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: frozen-river
+      containers:
+      - name: llama-server
+        image: ghcr.io/ggml-org/llama.cpp:server-b12211
+        args:
+        - -hf
+        - ggml-org/gpt-oss-120b-GGUF
+        - --threads
+        - "6"
+        - --load-mode
+        - none
+        - --no-webui
+        - --host
+        - 0.0.0.0
+        - --port
+        - "9931"
+        env:
+        - name: LLAMA_CACHE
+          value: /models
+        ports:
+        - name: http
+          containerPort: 9931
+        resources:
+          requests:
+            cpu: "8"
+            memory: 72Gi
+          limits:
+            memory: 100Gi
+        volumeMounts:
+        - name: models
+          mountPath: /models
+        startupProbe:
+          httpGet: { path: /health, port: http }
+          periodSeconds: 10
+          failureThreshold: 360
+        readinessProbe:
+          httpGet: { path: /health, port: http }
+          periodSeconds: 10
+        livenessProbe:
+          httpGet: { path: /health, port: http }
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 5
+      volumes:
+      - name: models
+        persistentVolumeClaim:
+          claimName: llm-models
