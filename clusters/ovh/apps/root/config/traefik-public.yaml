@@ -15,7 +15,8 @@ providers:
     ingressClass: traefik-public
 
 service:
-  type: LoadBalancer
+  spec:
+    type: LoadBalancer
   labels:
     lb-pool: public
   annotations:

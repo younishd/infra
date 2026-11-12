@@ -15,7 +15,8 @@ providers:
     ingressClass: traefik-tailnet
 
 service:
-  type: LoadBalancer
+  spec:
+    type: LoadBalancer
   labels:
     lb-pool: tailnet
   annotations:
