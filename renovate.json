@@ -3,7 +3,7 @@
   "extends": ["config:recommended"],
   "argocd": {
     "managerFilePatterns": [
-      "/clusters/home/apps/root/templates/.+\\.yaml$/",
+      "/clusters/lab/apps/root/templates/.+\\.yaml$/",
       "/clusters/ovh/apps/root/templates/.+\\.yaml$/"
     ]
   }
